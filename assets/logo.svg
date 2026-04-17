@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="gold-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E0C872"/>
+      <stop offset="50%" stop-color="#C9A84C"/>
+      <stop offset="100%" stop-color="#A8872F"/>
+    </linearGradient>
+    <linearGradient id="gold-gradient-ring" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C9A84C"/>
+      <stop offset="40%" stop-color="#E0C872"/>
+      <stop offset="60%" stop-color="#C9A84C"/>
+      <stop offset="100%" stop-color="#A8872F"/>
+    </linearGradient>
+    <!-- Outer brushstroke ring filter for organic feel -->
+    <filter id="brush-roughen" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="turbulence" baseFrequency="0.015" numOctaves="3" seed="2" result="turbulence"/>
+      <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+
+  <!-- Outer brushstroke ring (thicker, organic) -->
+  <circle cx="100" cy="100" r="88" fill="none" 
+          stroke="url(#gold-gradient-ring)" stroke-width="4" 
+          opacity="0.5" filter="url(#brush-roughen)"
+          stroke-dasharray="520 30 15 20" stroke-linecap="round"/>
+
+  <!-- Inner main circle ring -->
+  <circle cx="100" cy="100" r="78" fill="none" 
+          stroke="url(#gold-gradient)" stroke-width="3"
+          stroke-dasharray="470 20 10 15" stroke-linecap="round"/>
+
+  <!-- Second subtle outer swirl (brush flourish) -->
+  <path d="M 170 45 Q 195 70, 190 100 Q 188 130, 170 155" 
+        fill="none" stroke="url(#gold-gradient-ring)" stroke-width="2.5" 
+        opacity="0.4" stroke-linecap="round" filter="url(#brush-roughen)"/>
+
+  <!-- Left brush flourish -->
+  <path d="M 30 155 Q 12 130, 10 100 Q 12 70, 30 45" 
+        fill="none" stroke="url(#gold-gradient-ring)" stroke-width="2" 
+        opacity="0.3" stroke-linecap="round" filter="url(#brush-roughen)"/>
+
+  <!-- Letter M — Elegant serif style -->
+  <text x="100" y="118" 
+        font-family="'Playfair Display', 'Georgia', 'Times New Roman', serif" 
+        font-size="72" font-weight="700"
+        fill="url(#gold-gradient)" 
+        text-anchor="middle" 
+        dominant-baseline="central"
+        letter-spacing="2">M</text>
+</svg>

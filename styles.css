@@ -1,0 +1,459 @@
+/* ============================================================
+   MAJESTIC GARAGE DOORS — Global Stylesheet
+   Dark mode, gold accent, luxury serif aesthetic
+   ============================================================ */
+
+/* ── Google Fonts Import ─────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap');
+
+/* ── Design Tokens ───────────────────────────────────────── */
+:root {
+  /* Gold palette */
+  --gold:          #C9A84C;
+  --gold-light:    #E0C872;
+  --gold-dark:     #A8872F;
+  --gold-glow:     rgba(201, 168, 76, 0.35);
+
+  /* Backgrounds */
+  --bg-primary:    #0A0A0A;
+  --bg-secondary:  #141414;
+  --bg-elevated:   #1A1A1A;
+
+  /* Text */
+  --text-primary:  #F5F0E8;
+  --text-secondary:#9A9590;
+  --text-muted:    #5A5550;
+
+  /* Typography */
+  --font-display:  'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body:     'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Spacing */
+  --space-xs:  0.25rem;
+  --space-sm:  0.5rem;
+  --space-md:  1rem;
+  --space-lg:  2rem;
+  --space-xl:  4rem;
+  --space-2xl: 8rem;
+
+  /* Glassmorphism (reusable) */
+  --glass-bg:     rgba(20, 20, 20, 0.6);
+  --glass-border: rgba(201, 168, 76, 0.12);
+  --glass-blur:   16px;
+
+  /* Transitions */
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out:    cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+/* ── Reset ───────────────────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img, video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Navbar ──────────────────────────────────────────────── */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 3rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-bottom: 1px solid var(--glass-border);
+  transition: opacity 0.8s var(--ease-smooth),
+              transform 0.8s var(--ease-smooth);
+}
+
+.navbar--hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-100%);
+}
+
+.navbar--visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.navbar__logo {
+  height: 48px;
+  width: auto;
+}
+
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.navbar__brand-text {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  list-style: none;
+}
+
+.navbar__link {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: color 0.3s var(--ease-smooth);
+  position: relative;
+}
+
+.navbar__link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.3s var(--ease-smooth);
+}
+
+.navbar__link:hover {
+  color: var(--gold);
+}
+
+.navbar__link:hover::after {
+  width: 100%;
+}
+
+.navbar__cta {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--bg-primary);
+  background: var(--gold);
+  padding: 0.6rem 1.5rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s var(--ease-smooth),
+              box-shadow 0.3s var(--ease-smooth);
+}
+
+.navbar__cta:hover {
+  background: var(--gold-light);
+  box-shadow: 0 4px 24px var(--gold-glow);
+}
+
+/* ── Hero Section ────────────────────────────────────────── */
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg-primary);
+}
+
+.hero__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Bottom gradient overlay for contrast */
+.hero__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(
+    to top,
+    rgba(10, 10, 10, 0.85) 0%,
+    rgba(10, 10, 10, 0.3) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Top gradient overlay for navbar blending */
+.hero__overlay-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20%;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.5) 0%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ── Hero Tagline ────────────────────────────────────────── */
+.hero__tagline {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero__tagline h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  line-height: 1.15;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.tagline--semibold {
+  display: block;
+  font-weight: 600;
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
+  color: var(--text-primary);
+  letter-spacing: 0.2em;
+  margin-bottom: 0.15em;
+}
+
+.tagline--bold {
+  display: block;
+  font-weight: 800;
+  color: var(--gold);
+  text-shadow: 0 0 60px var(--gold-glow),
+               0 0 120px rgba(201, 168, 76, 0.15);
+}
+
+/* Decorative line under tagline */
+.hero__tagline-line {
+  width: 80px;
+  height: 2px;
+  background: var(--gold);
+  margin: 1.5rem auto 0;
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+/* ── Scroll Indicator ────────────────────────────────────── */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 1;
+  transition: opacity 0.5s var(--ease-smooth);
+}
+
+.scroll-indicator--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scroll-indicator__mouse {
+  width: 24px;
+  height: 38px;
+  border: 2px solid var(--gold);
+  border-radius: 12px;
+  position: relative;
+  opacity: 0.7;
+}
+
+.scroll-indicator__wheel {
+  width: 3px;
+  height: 8px;
+  background: var(--gold);
+  border-radius: 2px;
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scrollWheel 2s ease-in-out infinite;
+}
+
+@keyframes scrollWheel {
+  0%   { opacity: 1; transform: translateX(-50%) translateY(0); }
+  50%  { opacity: 0.3; transform: translateX(-50%) translateY(12px); }
+  100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.scroll-indicator__text {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.6;
+}
+
+/* ── Loading Overlay ─────────────────────────────────────── */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-primary);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  transition: opacity 0.8s var(--ease-smooth);
+}
+
+.loading-overlay--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-overlay__logo {
+  width: 80px;
+  height: 80px;
+  animation: loadingPulse 2s ease-in-out infinite;
+}
+
+@keyframes loadingPulse {
+  0%, 100% { opacity: 0.4; transform: scale(0.95); }
+  50%      { opacity: 1; transform: scale(1); }
+}
+
+.loading-overlay__bar-track {
+  width: 200px;
+  height: 2px;
+  background: var(--bg-elevated);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.loading-overlay__bar-fill {
+  width: 0%;
+  height: 100%;
+  background: var(--gold);
+  border-radius: 1px;
+  transition: width 0.3s var(--ease-smooth);
+}
+
+/* ── Main Content (after hero) ───────────────────────────── */
+.content {
+  position: relative;
+  background: var(--bg-primary);
+  z-index: 5;
+}
+
+.content__placeholder {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2xl);
+}
+
+.content__placeholder p {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+/* ── Glassmorphism Utility (for later use) ───────────────── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 1.5rem;
+  }
+
+  .navbar__brand-text {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+  }
+
+  .navbar__links {
+    display: none; /* hamburger menu for later */
+  }
+
+  .navbar__logo {
+    height: 36px;
+  }
+
+  .tagline--semibold {
+    letter-spacing: 0.12em;
+  }
+
+  .tagline--bold {
+    letter-spacing: 0.08em;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__tagline h1 {
+    font-size: 2rem;
+  }
+
+  .tagline--semibold {
+    font-size: 1.3rem;
+  }
+}

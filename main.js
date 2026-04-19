@@ -184,6 +184,123 @@
     });
   }
 
+  // ── Before / After Comparison Slider ───────────────────
+  function initComparison() {
+    const wrapper = document.querySelector('.comparison__wrapper');
+    const beforeEl = document.getElementById('comparisonBefore');
+    const slider   = document.getElementById('comparisonSlider');
+
+    if (!wrapper || !beforeEl || !slider) return;
+
+    let isDragging = false;
+    let wrapperRect = wrapper.getBoundingClientRect();
+
+    function updateSlider(clientX) {
+      wrapperRect = wrapper.getBoundingClientRect();
+      const x = clientX - wrapperRect.left;
+      const pct = Math.max(0, Math.min(x / wrapperRect.width, 1));
+
+      // Update clip-path on "before" overlay
+      beforeEl.style.clipPath = `inset(0 ${(1 - pct) * 100}% 0 0)`;
+      // Move slider line
+      slider.style.left = `${pct * 100}%`;
+    }
+
+    // Pointer events (mouse + touch unified)
+    wrapper.addEventListener('pointerdown', (e) => {
+      isDragging = true;
+      wrapper.setPointerCapture(e.pointerId);
+      updateSlider(e.clientX);
+    });
+
+    wrapper.addEventListener('pointermove', (e) => {
+      if (!isDragging) return;
+      updateSlider(e.clientX);
+    });
+
+    wrapper.addEventListener('pointerup', () => { isDragging = false; });
+    wrapper.addEventListener('pointercancel', () => { isDragging = false; });
+
+    // Auto-animate on first scroll into view: sweep from 50% → 20% → 80% → 50%
+    ScrollTrigger.create({
+      trigger: wrapper,
+      start: 'top 80%',
+      once: true,
+      onEnter: () => {
+        const tl = gsap.timeline({ delay: 0.3 });
+        const animate = { val: 50 };
+
+        tl.to(animate, {
+          val: 15,
+          duration: 0.9,
+          ease: 'power2.inOut',
+          onUpdate: () => {
+            const pct = animate.val / 100;
+            beforeEl.style.clipPath = `inset(0 ${(1 - pct) * 100}% 0 0)`;
+            slider.style.left = `${pct * 100}%`;
+          },
+        })
+        .to(animate, {
+          val: 85,
+          duration: 1.1,
+          ease: 'power2.inOut',
+          onUpdate: () => {
+            const pct = animate.val / 100;
+            beforeEl.style.clipPath = `inset(0 ${(1 - pct) * 100}% 0 0)`;
+            slider.style.left = `${pct * 100}%`;
+          },
+        })
+        .to(animate, {
+          val: 50,
+          duration: 0.7,
+          ease: 'power2.inOut',
+          onUpdate: () => {
+            const pct = animate.val / 100;
+            beforeEl.style.clipPath = `inset(0 ${(1 - pct) * 100}% 0 0)`;
+            slider.style.left = `${pct * 100}%`;
+          },
+        });
+      },
+    });
+  }
+
+  // ── About Section Scroll Animations ────────────────────
+  function initAboutAnimations() {
+    const aboutCopy = document.querySelector('.about__copy');
+    const comparison = document.querySelector('.about__comparison');
+
+    if (!aboutCopy || !comparison) return;
+
+    // Comparison image entrance
+    gsap.from(comparison, {
+      opacity: 0,
+      x: -60,
+      duration: 1,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: comparison,
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+      },
+    });
+
+    // Copy elements staggered entrance
+    const copyElements = aboutCopy.querySelectorAll('.about__label, .about__heading, .about__rule, .about__text, .about__cta');
+
+    gsap.from(copyElements, {
+      opacity: 0,
+      y: 40,
+      duration: 0.8,
+      stagger: 0.12,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: aboutCopy,
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+      },
+    });
+  }
+
   // ── Boot ────────────────────────────────────────────────
   async function init() {
     document.body.style.overflow = 'hidden';
@@ -193,6 +310,8 @@
     document.body.style.overflow = '';
     dismissLoading();
     initScrollVideo();
+    initComparison();
+    initAboutAnimations();
   }
 
   if (document.readyState === 'loading') {
@@ -202,3 +321,4 @@
   }
 
 })();
+

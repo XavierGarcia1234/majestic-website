@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Majestic Garage Doors — Premium custom garage doors crafted with luxury, precision, and uncompromising quality.">
-  <title>Majestic Garage Doors | Crafted Beyond Perfection</title>
+  <meta name="description"
+    content="Majestic Garage Doors — Premium custom garage doors crafted with luxury, precision, and uncompromising quality.">
+  <title>Majestic Garage Doors | Quality Meets Luxury</title>
 
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
@@ -12,6 +14,7 @@
   <!-- Favicon (SVG) -->
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
 </head>
+
 <body>
 
   <!-- ── Loading Overlay ──────────────────────────────── -->
@@ -40,8 +43,7 @@
 
   <!-- ── Hero Section ─────────────────────────────────── -->
   <section class="hero" id="hero">
-    <video class="hero__video" id="heroVideo"
-           preload="auto" muted playsinline>
+    <video class="hero__video" id="heroVideo" preload="auto" muted playsinline>
       <source src="assets/herovid_scroll.mp4" type="video/mp4">
     </video>
 
@@ -51,8 +53,8 @@
     <!-- Tagline (appears after video ends) -->
     <div class="hero__tagline" id="heroTagline">
       <h1>
-        <span class="tagline--semibold">Crafted</span>
-        <span class="tagline--bold">Beyond Perfection</span>
+        <span class="tagline--semibold">Quality</span>
+        <span class="tagline--bold">Meets Luxury</span>
       </h1>
       <div class="hero__tagline-line" id="taglineLine"></div>
     </div>
@@ -68,15 +70,120 @@
 
   <!-- ── Main Content ─────────────────────────────────── -->
   <main class="content" id="mainContent">
-    <section class="content__placeholder">
-      <p>Excellence in every detail</p>
+
+    <!-- ── Partners Marquee ────────────────────────────── -->
+    <section class="partners" id="partners">
+      <div class="partners__header">
+        <span class="partners__label">Our Partners</span>
+        <h2 class="partners__heading">Trusted by the Industry's Finest</h2>
+        <div class="partners__rule"></div>
+      </div>
+
+      <div class="marquee" aria-label="Partner brand logos">
+        <div class="marquee__track">
+          <!-- First set (3× logos to guarantee viewport coverage) -->
+          <div class="marquee__group">
+            <img src="assets/marquee/amarr.svg" alt="Amarr" class="marquee__logo">
+            <img src="assets/marquee/chamberlain.svg" alt="Chamberlain" class="marquee__logo">
+            <img src="assets/marquee/garaga.svg" alt="Garaga" class="marquee__logo">
+            <img src="assets/marquee/genie.svg" alt="Genie" class="marquee__logo">
+            <img src="assets/marquee/Listmaster.svg" alt="Liftmaster" class="marquee__logo">
+            <img src="assets/marquee/amarr.svg" alt="Amarr" class="marquee__logo">
+            <img src="assets/marquee/chamberlain.svg" alt="Chamberlain" class="marquee__logo">
+            <img src="assets/marquee/garaga.svg" alt="Garaga" class="marquee__logo">
+            <img src="assets/marquee/genie.svg" alt="Genie" class="marquee__logo">
+            <img src="assets/marquee/Listmaster.svg" alt="Liftmaster" class="marquee__logo">
+            <img src="assets/marquee/amarr.svg" alt="Amarr" class="marquee__logo">
+            <img src="assets/marquee/chamberlain.svg" alt="Chamberlain" class="marquee__logo">
+            <img src="assets/marquee/garaga.svg" alt="Garaga" class="marquee__logo">
+            <img src="assets/marquee/genie.svg" alt="Genie" class="marquee__logo">
+            <img src="assets/marquee/Listmaster.svg" alt="Liftmaster" class="marquee__logo">
+          </div>
+          <!-- Duplicate for seamless loop -->
+          <div class="marquee__group" aria-hidden="true">
+            <img src="assets/marquee/amarr.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/chamberlain.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/garaga.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/genie.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/Listmaster.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/amarr.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/chamberlain.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/garaga.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/genie.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/Listmaster.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/amarr.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/chamberlain.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/garaga.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/genie.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/Listmaster.svg" alt="" class="marquee__logo">
+          </div>
+        </div>
+      </div>
     </section>
+
+    <!-- ── About / Before & After ──────────────────────── -->
+    <section class="about" id="about">
+      <div class="about__container">
+
+        <!-- Before / After Image Comparison -->
+        <div class="about__comparison" id="comparison">
+          <div class="comparison__wrapper">
+            <!-- After image (bottom layer — always fully visible) -->
+            <img
+              src="assets/garageshots/4after.webp"
+              alt="New modern garage door installation"
+              class="comparison__img comparison__img--after"
+            >
+            <!-- Before image (top layer — clipped by slider) -->
+            <div class="comparison__before" id="comparisonBefore">
+              <img
+                src="assets/garageshots/4before.webp"
+                alt="Damaged garage door before replacement"
+                class="comparison__img comparison__img--before"
+              >
+            </div>
+            <!-- Slider handle -->
+            <div class="comparison__slider" id="comparisonSlider">
+              <div class="comparison__line"></div>
+              <div class="comparison__handle">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                  <polyline points="10,8 5,14 10,20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <polyline points="18,8 23,14 18,20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="comparison__line"></div>
+            </div>
+            <!-- Labels -->
+            <span class="comparison__label comparison__label--before">Before</span>
+            <span class="comparison__label comparison__label--after">After</span>
+          </div>
+        </div>
+
+        <!-- Copy / Text -->
+        <div class="about__copy">
+          <span class="about__label">Who We Are</span>
+          <h2 class="about__heading">Ottawa's Premier<br>Garage Door Experts</h2>
+          <div class="about__rule"></div>
+          <p class="about__text">
+            At Majestic Garage Doors, we deliver premium craftsmanship and rapid response when it matters most. From emergency torsion spring repairs to full custom installations, our certified technicians bring precision, reliability, and an uncompromising standard of quality to every project.
+          </p>
+          <p class="about__text">
+            Proudly serving Ottawa and the surrounding region, we partner with the industry's top manufacturers to ensure every door we install stands the test of time — and elevates your home's curb appeal.
+          </p>
+          <a href="#" class="about__cta" id="about-cta">Discover Our Services</a>
+        </div>
+
+      </div>
+    </section>
+
   </main>
 
   <!-- ── Scripts ──────────────────────────────────────── -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Draggable.min.js"></script>
   <script src="main.js"></script>
 
 </body>
+
 </html>

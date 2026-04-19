@@ -301,6 +301,131 @@
     });
   }
 
+  // ── Service Cards — 3D Tilt + Glow + Scroll Animations ──
+  function initServiceCards() {
+    const cards = document.querySelectorAll('.service-card');
+    if (!cards.length) return;
+
+    // 3D tilt + glow tracking
+    cards.forEach((card) => {
+      const glow = card.querySelector('.service-card__glow');
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        // Tilt angles (max ±6°)
+        const rotateY = ((x - centerX) / centerX) * 6;
+        const rotateX = ((centerY - y) / centerY) * 6;
+
+        card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+
+        // Move glow orb
+        if (glow) {
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        }
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+
+    // Staggered scroll entrance
+    gsap.from(cards, {
+      opacity: 0,
+      y: 60,
+      duration: 0.8,
+      stagger: 0.1,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.services__grid',
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+    });
+
+    // Header entrance
+    const headerEls = document.querySelectorAll('.services__label, .services__heading, .services__rule');
+    gsap.from(headerEls, {
+      opacity: 0,
+      y: 30,
+      duration: 0.7,
+      stagger: 0.1,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.services__header',
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+    });
+  }
+
+  // ── Reviews Marquee — 3D Tilt + Scroll Animations ──────
+  function initReviewsCarousel() {
+    const cards = document.querySelectorAll('.review-card');
+    if (!cards.length) return;
+
+    // 3D tilt + glow tracking on review cards
+    cards.forEach((card) => {
+      const glow = card.querySelector('.review-card__glow');
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateY = ((x - centerX) / centerX) * 5;
+        const rotateX = ((centerY - y) / centerY) * 5;
+
+        card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+
+        if (glow) {
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        }
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+
+    // GSAP Scroll Entrance — Header
+    const headerEls = document.querySelectorAll('.reviews__label, .reviews__heading, .reviews__rule, .reviews__google-badge');
+    gsap.from(headerEls, {
+      opacity: 0,
+      y: 30,
+      duration: 0.7,
+      stagger: 0.1,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.reviews__header',
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+    });
+
+    // Marquee entrance
+    gsap.from('.reviews-marquee', {
+      opacity: 0,
+      y: 40,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.reviews-marquee',
+        start: 'top 90%',
+        toggleActions: 'play none none none',
+      },
+    });
+  }
+
   // ── Boot ────────────────────────────────────────────────
   async function init() {
     document.body.style.overflow = 'hidden';
@@ -312,6 +437,8 @@
     initScrollVideo();
     initComparison();
     initAboutAnimations();
+    initServiceCards();
+    initReviewsCarousel();
   }
 
   if (document.readyState === 'loading') {

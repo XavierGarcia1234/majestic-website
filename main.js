@@ -301,6 +301,69 @@
     });
   }
 
+  // ── About Us (History) Animations ──────────────────────
+  function initAboutUsAnimations() {
+    const aboutUsCopy = document.querySelector('.about-us__copy');
+    const visuals = document.querySelector('.about-us__visuals');
+
+    if (!aboutUsCopy || !visuals) return;
+
+    // Visuals entrance
+    gsap.from('.about-us__img-wrapper--1', {
+      opacity: 0,
+      y: 40,
+      duration: 1,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: visuals,
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+      },
+    });
+
+    gsap.from('.about-us__img-wrapper--2', {
+      opacity: 0,
+      x: -40,
+      duration: 1,
+      delay: 0.2,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: visuals,
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+      },
+    });
+
+    gsap.from('.about-us__badge', {
+      opacity: 0,
+      scale: 0,
+      rotation: -45,
+      duration: 0.8,
+      delay: 0.6,
+      ease: 'back.out(1.5)',
+      scrollTrigger: {
+        trigger: visuals,
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+      },
+    });
+
+    // Copy staggered entrance
+    const copyElements = aboutUsCopy.querySelectorAll('.about-us__label, .about-us__heading, .about-us__rule, .about-us__text');
+    gsap.from(copyElements, {
+      opacity: 0,
+      y: 40,
+      duration: 0.8,
+      stagger: 0.12,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: aboutUsCopy,
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+      },
+    });
+  }
+
   // ── Service Cards — 3D Tilt + Glow + Scroll Animations ──
   function initServiceCards() {
     const cards = document.querySelectorAll('.service-card');
@@ -426,6 +489,48 @@
     });
   }
 
+  // ── Gallery Teaser Animations ──────────────────────────
+  function initGalleryTeaser() {
+    const teaserContent = document.querySelectorAll('.gallery-teaser__label, .gallery-teaser__heading, .gallery-teaser__rule, .gallery-teaser__text, .gallery-teaser__cta');
+    const teaserImages = document.querySelectorAll('.teaser-image');
+
+    if (!teaserContent.length || !teaserImages.length) return;
+
+    // Content fade up
+    gsap.from(teaserContent, {
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      stagger: 0.1,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.gallery-teaser',
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+      },
+    });
+
+    // Image stagger entry
+    gsap.fromTo(teaserImages, {
+      opacity: 0,
+      x: 50,
+      rotationY: 15
+    }, {
+      opacity: 1,
+      x: 0,
+      rotationY: 0,
+      transformOrigin: 'left center',
+      duration: 1,
+      stagger: 0.2,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.gallery-teaser__visuals',
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+      },
+    });
+  }
+
   // ── Boot ────────────────────────────────────────────────
   async function init() {
     document.body.style.overflow = 'hidden';
@@ -437,8 +542,20 @@
     initScrollVideo();
     initComparison();
     initAboutAnimations();
+    initAboutUsAnimations();
     initServiceCards();
+    initGalleryTeaser();
     initReviewsCarousel();
+
+    // ── Handle Hash Links on Load with Pinned Sections ──────
+    if (window.location.hash) {
+      setTimeout(() => {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 500); // Allow time for layout and initial animations
+    }
   }
 
   if (document.readyState === 'loading') {

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Contact Majestic Garage Doors — Get in touch for premium custom garage doors in Ottawa. 24/7 service available.">
+  <title>Contact Us | Majestic Garage Doors</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Favicon (SVG) -->
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+</head>
+
+<body>
+
+  <!-- ── Loading Overlay ──────────────────────────────── -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <img src="assets/logo.svg" alt="Majestic" class="loading-overlay__logo">
+    <div class="loading-overlay__bar-track">
+      <div class="loading-overlay__bar-fill" id="loadingBar"></div>
+    </div>
+  </div>
+
+  <!-- ── Navbar ───────────────────────────────────────── -->
+  <nav class="navbar navbar--visible" id="navbar">
+    <a href="index.html" class="navbar__brand" style="text-decoration: none;">
+      <img src="assets/logo.svg" alt="Majestic Garage Doors" class="navbar__logo">
+      <span class="navbar__brand-text">Majestic</span>
+    </a>
+    <ul class="navbar__links">
+      <li><a href="index.html" class="navbar__link" id="nav-home">Home</a></li>
+      <li><a href="index.html#services" class="navbar__link" id="nav-services">Services</a></li>
+      <li><a href="index.html#about-us" class="navbar__link" id="nav-about">About</a></li>
+      <li><a href="gallery.html" class="navbar__link" id="nav-gallery">Gallery</a></li>
+    </ul>
+    <a href="contact.html" class="navbar__cta" id="nav-quote" style="text-decoration: none;">Get in Touch</a>
+  </nav>
+
+  <!-- ── Contact Content ──────────────────────────────── -->
+  <main class="content contact-page" id="mainContent">
+
+    <!-- Contact Header / Form Section -->
+    <section class="contact-section">
+      <div class="contact-section__container">
+        <!-- Text/Info side -->
+        <div class="contact__info">
+          <span class="contact__label">Get in Touch</span>
+          <h1 class="contact__heading">Let's Build Something <span class="contact__heading--gold">Beautiful</span></h1>
+          <div class="contact__rule"></div>
+          <p class="contact__text">
+            Whether you need emergency repairs, a complete custom installation, or simply have questions about our services, our team is ready to assist you.
+          </p>
+
+          <div class="contact__details">
+            <div class="contact__detail-item">
+              <span class="contact__detail-label">Email Us</span>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=syedahmed1674@gmail.com" target="_blank" rel="noopener noreferrer" class="contact__detail-value">syedahmed1674@gmail.com</a>
+            </div>
+            <div class="contact__detail-item">
+              <span class="contact__detail-label">Call Us</span>
+              <a href="tel:6134623918" class="contact__detail-value">(613)-462-3918</a>
+            </div>
+            <div class="contact__detail-item">
+              <span class="contact__detail-label">24/7 Emergency Response</span>
+              <a href="tel:6136149709" class="contact__detail-value contact__detail-value--emergency">(613)-614-9709</a>
+            </div>
+            <div class="contact__detail-item">
+              <span class="contact__detail-label">Business Hours</span>
+              <span class="contact__detail-value">Open 24/7</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form side -->
+        <div class="contact__form-wrapper">
+          <form class="contact-form" id="contactForm">
+            <div class="contact-form__group">
+              <label for="name" class="contact-form__label">Full Name</label>
+              <input type="text" id="name" name="name" class="contact-form__input" required placeholder="John Doe">
+            </div>
+            
+            <div class="contact-form__group">
+              <label for="email" class="contact-form__label">Email Address</label>
+              <input type="email" id="email" name="email" class="contact-form__input" required placeholder="john@example.com">
+            </div>
+            
+            <div class="contact-form__group">
+              <label for="phone" class="contact-form__label">Phone Number</label>
+              <input type="tel" id="phone" name="phone" class="contact-form__input" placeholder="(613) 555-0123">
+            </div>
+
+            <div class="contact-form__group">
+              <label for="service" class="contact-form__label">Service Needed</label>
+              <select id="service" name="service" class="contact-form__select">
+                <option value="installation">Garage Door Installation</option>
+                <option value="springs">Spring & Cable Replacement</option>
+                <option value="emergency">Emergency Services</option>
+                <option value="opener">Opener Installation & Repair</option>
+                <option value="panels">Panel Replacement</option>
+                <option value="sealing">Weather Sealing</option>
+                <option value="other">Other / Consultation</option>
+              </select>
+            </div>
+            
+            <div class="contact-form__group contact-form__group--full">
+              <label for="message" class="contact-form__label">Message</label>
+              <textarea id="message" name="message" class="contact-form__textarea" rows="5" required placeholder="How can we help you?"></textarea>
+            </div>
+            
+            <button type="submit" class="contact-form__submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ───────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="site-footer__container">
+      <div class="site-footer__brand">
+        <div class="site-footer__brand-header">
+          <img src="assets/logo.svg" alt="Majestic Garage Doors" class="site-footer__logo">
+          <span class="site-footer__title">Majestic</span>
+        </div>
+        <p class="site-footer__text">Ottawa's Premier Garage Door Experts. Craftsmanship, precision, and luxury.</p>
+      </div>
+      
+      <div class="site-footer__contact">
+        <h4 class="site-footer__heading">Contact Information</h4>
+        <div class="site-footer__rule"></div>
+        <ul class="site-footer__list">
+          <li><span class="site-footer__label">Email:</span> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=syedahmed1674@gmail.com" target="_blank" rel="noopener noreferrer">syedahmed1674@gmail.com</a></li>
+          <li><span class="site-footer__label">Phone:</span> <a href="tel:6134623918">(613)-462-3918</a></li>
+          <li><span class="site-footer__label">Emergency:</span> <a href="tel:6136149709">(613)-614-9709</a></li>
+          <li><span class="site-footer__label">Hours:</span> 24/7 Service</li>
+        </ul>
+      </div>
+      
+      <div class="site-footer__links">
+        <h4 class="site-footer__heading">Quick Links</h4>
+        <div class="site-footer__rule"></div>
+        <ul class="site-footer__list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="index.html#about-us">About Us</a></li>
+          <li><a href="contact.html">Get in Touch</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <p>&copy; 2026 Majestic Garage Doors. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ── Scripts ──────────────────────────────────────── -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script>
+    // simple load script so the page reveals smoothly
+    window.addEventListener('load', () => {
+      document.getElementById('loadingOverlay').classList.add('loading-overlay--hidden');
+      
+      const urlParams = new URLSearchParams(window.location.search);
+      const service = urlParams.get('service');
+      if (service) {
+        const select = document.getElementById('service');
+        if (select) {
+          select.value = service;
+        }
+      }
+      
+      gsap.from('.contact__info > *', {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: 'power3.out',
+        delay: 0.5
+      });
+      
+      gsap.from('.contact__form-wrapper', {
+        x: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        delay: 0.8
+      });
+    });
+  </script>
+
+</body>
+
+</html>

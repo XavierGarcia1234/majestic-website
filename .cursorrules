@@ -1,0 +1,24 @@
+# Majestic Garage Doors — AI Agent Skill & Brand Guidelines
+
+CRITICAL AI INSTRUCTION: When adding or modifying any sections, pages, or components for this project, you MUST adhere to the following Design System to maintain a premium, luxury aesthetic:
+
+## 1. TYPOGRAPHY:
+- **Display Font:** 'Playfair Display' (serif). Used for all headings.
+  - Ensure headings have `letter-spacing: 0.04em` (or more) and `font-weight: 500` to match the brand.
+- **Body Font:** 'Inter' (sans-serif). Used for copy, labels, and buttons.
+- **Section Labels:** Always use uppercase, `letter-spacing: 4px`, `font-size: 0.7rem`, `font-weight: 500`, `color: var(--gold)`.
+
+## 2. COLORS:
+- Always use defined CSS variables: 
+  - **Backgrounds:** `var(--bg-primary)` [#0A0A0A], `var(--bg-secondary)` [#141414], `var(--bg-elevated)` [#1A1A1A]
+  - **Text:** `var(--text-primary)` [#F5F0E8], `var(--text-secondary)` [#9A9590]
+  - **Accents:** `var(--gold)` [#C9A84C], `var(--gold-glow)` [rgba(201,168,76,0.35)]
+
+## 3. COMPONENTS & SPACING:
+- Use standard spacing variables (`var(--space-md)`, `var(--space-lg)`, etc.)
+- Use the Glassmorphism system (`var(--glass-bg)`, `var(--glass-blur)`) for overlays and navigation.
+- Always include smooth transitions using `var(--ease-smooth)`.
+- **Separator lines (rules)** under headings MUST be uniform: `width: 50px; height: 1.5px; opacity: 0.5; background: var(--gold);`.
+- **Feature sections** (like About Us or Gallery Teaser) should use `background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);` and MUST NOT have a top `.section::before` gradient separator.
+
+**Failure to follow these rules will result in an inconsistent design.** Do not introduce new fonts or generic colors.

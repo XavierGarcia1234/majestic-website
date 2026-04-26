@@ -13,17 +13,17 @@
     const loadingOverlay = document.getElementById('loadingOverlay');
 
     if (loadingBar) {
+      loadingBar.style.transition = 'width 0.2s ease-out';
+      loadingBar.style.width = '100%';
+      
       setTimeout(() => {
-        loadingBar.style.width = '100%';
-        setTimeout(() => {
-          if (loadingOverlay) {
-            loadingOverlay.style.opacity = '0';
-            setTimeout(() => {
-              loadingOverlay.style.display = 'none';
-            }, 800);
-          }
-        }, 200);
-      }, 300);
+        if (loadingOverlay) {
+          loadingOverlay.style.opacity = '0';
+          setTimeout(() => {
+            loadingOverlay.style.display = 'none';
+          }, 400); // Fade out duration
+        }
+      }, 200);
     }
   }
 

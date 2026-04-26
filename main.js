@@ -31,61 +31,6 @@
   // ── Register GSAP Plugin ────────────────────────────────
   gsap.registerPlugin(ScrollTrigger);
 
-  // ── Preload Video ───────────────────────────────────────
-  // Fetch as blob so the entire file is in memory for 
-  // instant seeking (no network round-trips on seek)
-  async function preloadVideo() {
-    try {
-      loadingBar.style.width = '5%';
-
-      const response = await fetch('assets/herovid_scroll.mp4');
-      if (!response.ok) throw new Error('Fetch failed');
-
-      const reader = response.body.getReader();
-      const contentLength = +response.headers.get('Content-Length') || 0;
-      let received = 0;
-      const chunks = [];
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        chunks.push(value);
-        received += value.length;
-
-        if (contentLength > 0) {
-          loadingBar.style.width = Math.min(90, (received / contentLength) * 90) + '%';
-        }
-      }
-
-      const blob = new Blob(chunks, { type: 'video/mp4' });
-      const blobUrl = URL.createObjectURL(blob);
-
-      // Remove any <source> children and set src directly
-      while (video.firstChild) video.removeChild(video.firstChild);
-      video.src = blobUrl;
-      video.load();
-
-      loadingBar.style.width = '95%';
-
-      return new Promise((resolve) => {
-        const ready = () => { videoReady = true; resolve(); };
-        video.addEventListener('loadeddata', ready, { once: true });
-        if (video.readyState >= 2) ready();
-      });
-
-    } catch (err) {
-      console.warn('Blob preload failed, using native:', err);
-      // Fallback: let browser load natively
-      while (video.firstChild) video.removeChild(video.firstChild);
-      video.src = 'assets/herovid_scroll.mp4';
-      return new Promise((resolve) => {
-        const ready = () => { videoReady = true; resolve(); };
-        video.addEventListener('loadeddata', ready, { once: true });
-        if (video.readyState >= 2) ready();
-      });
-    }
-  }
-
   // ── Dismiss Loading Overlay ─────────────────────────────
   function dismissLoading() {
     loadingBar.style.width = '100%';
@@ -127,6 +72,7 @@
   // ── Initialize Hero Video ───────────────────────────────
   function initHeroVideo() {
     const startVideo = () => {
+      videoReady = true;
       video.playbackRate = 1.25;
       video.play().catch(err => console.warn("Autoplay blocked:", err));
       
@@ -136,7 +82,7 @@
       }, 800);
     };
 
-    if (videoReady) {
+    if (video.readyState >= 2) {
       startVideo();
     } else {
       video.addEventListener('loadeddata', startVideo, { once: true });
@@ -525,13 +471,14 @@
   }
 
   // ── Boot ────────────────────────────────────────────────
-  async function init() {
+  function init() {
     document.body.style.overflow = 'hidden';
 
-    await preloadVideo();
+    // Ultra-fast loading bar animation (200ms)
+    loadingBar.style.transition = 'width 0.2s ease-out';
+    loadingBar.style.width = '100%';
 
-    document.body.style.overflow = '';
-    dismissLoading();
+    // Initialize components
     initHeroVideo();
     initComparison();
     initAboutAnimations();
@@ -539,6 +486,12 @@
     initServiceCards();
     initGalleryTeaser();
     initReviewsCarousel();
+
+    // Dismiss loading overlay almost instantly
+    setTimeout(() => {
+      document.body.style.overflow = '';
+      dismissLoading();
+    }, 200);
 
     // ── Handle Hash Links on Load with Pinned Sections ──────
     if (window.location.hash) {

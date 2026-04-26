@@ -94,41 +94,47 @@
 
         <!-- Form side -->
         <div class="contact__form-wrapper">
-          <form class="contact-form" id="contactForm">
+          <form class="contact-form" id="contactForm" action="https://formspree.io/f/mjgjzzqo" method="POST">
             <div class="contact-form__group">
               <label for="name" class="contact-form__label">Full Name</label>
-              <input type="text" id="name" name="name" class="contact-form__input" required placeholder="John Doe">
+              <input type="text" id="name" name="name" class="contact-form__input" required placeholder="John Doe" data-fs-field>
             </div>
             
             <div class="contact-form__group">
               <label for="email" class="contact-form__label">Email Address</label>
-              <input type="email" id="email" name="email" class="contact-form__input" required placeholder="john@example.com">
+              <input type="email" id="email" name="email" class="contact-form__input" required placeholder="john@example.com" data-fs-field>
             </div>
             
             <div class="contact-form__group">
               <label for="phone" class="contact-form__label">Phone Number</label>
-              <input type="tel" id="phone" name="phone" class="contact-form__input" placeholder="(613) 555-0123">
+              <input type="tel" id="phone" name="phone" class="contact-form__input" placeholder="(613) 555-0123" data-fs-field>
             </div>
 
             <div class="contact-form__group">
               <label for="service" class="contact-form__label">Service Needed</label>
-              <select id="service" name="service" class="contact-form__select">
-                <option value="installation">Garage Door Installation</option>
-                <option value="springs">Spring & Cable Replacement</option>
-                <option value="emergency">Emergency Services</option>
-                <option value="opener">Opener Installation & Repair</option>
-                <option value="panels">Panel Replacement</option>
-                <option value="sealing">Weather Sealing</option>
-                <option value="other">Other / Consultation</option>
+              <select id="service" name="service" class="contact-form__select" data-fs-field>
+                <option value="Garage Door Installation">Garage Door Installation</option>
+                <option value="Spring & Cable Replacement">Spring & Cable Replacement</option>
+                <option value="Emergency Services">Emergency Services</option>
+                <option value="Opener Installation & Repair">Opener Installation & Repair</option>
+                <option value="Panel Replacement">Panel Replacement</option>
+                <option value="Weather Sealing">Weather Sealing</option>
+                <option value="Other / Consultation">Other / Consultation</option>
               </select>
             </div>
             
             <div class="contact-form__group contact-form__group--full">
               <label for="message" class="contact-form__label">Message</label>
-              <textarea id="message" name="message" class="contact-form__textarea" rows="5" required placeholder="How can we help you?"></textarea>
+              <textarea id="message" name="message" class="contact-form__textarea" rows="5" required placeholder="How can we help you?" data-fs-field></textarea>
             </div>
             
-            <button type="submit" class="contact-form__submit">Send Message</button>
+            <button type="submit" class="contact-form__submit" data-fs-submit-btn>Send Message</button>
+            
+            <!-- Formspree Status Messages -->
+            <div data-fs-success class="contact-form__status contact-form__status--success">
+              Thank you! Your message has been sent successfully.
+            </div>
+            <div data-fs-error class="contact-form__status contact-form__status--error"></div>
           </form>
         </div>
       </div>
@@ -230,6 +236,21 @@
     window.toggleMenu = toggleMenu;
 
     document.getElementById('hamburger').addEventListener('click', toggleMenu);
+  </script>
+
+  <!-- ── Formspree Integration ──────────────────────────── -->
+  <script>
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { 
+      formElement: '#contactForm', 
+      formId: 'mjgjzzqo',
+      onSuccess: function() {
+        // Optional: extra logic after success
+        console.log('Form submitted successfully');
+      }
+    });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
   </script>
 
 </body>

@@ -2458,3 +2458,29 @@ a {
   box-shadow: 0 8px 30px var(--gold-glow);
   transform: translateY(-2px);
 }
+
+/* Form Status Messages */
+.contact-form__status {
+  grid-column: 1 / -1;
+  padding: 1rem;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  margin-top: 1.5rem;
+  display: none;
+  transition: all 0.3s ease;
+}
+
+.contact-form__status--success {
+  display: block;
+  background: rgba(40, 167, 69, 0.1);
+  border: 1px solid rgba(40, 167, 69, 0.3);
+  color: #2ecc71;
+}
+
+.contact-form__status--error {
+  display: block;
+  background: rgba(231, 76, 60, 0.1);
+  border: 1px solid rgba(231, 76, 60, 0.3);
+  color: #e74c3c;
+}

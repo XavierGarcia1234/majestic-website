@@ -38,7 +38,24 @@
       <li><a href="gallery.html" class="navbar__link" id="nav-gallery">Gallery</a></li>
     </ul>
     <a href="contact.html" class="navbar__cta" id="nav-quote" style="text-decoration: none;">Get in Touch</a>
+    
+    <button class="navbar__hamburger" id="hamburger" aria-label="Toggle Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
+
+  <!-- ── Mobile Menu Overlay ────────────────────────────────── -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-menu__links">
+      <li><a href="index.html" class="mobile-menu__link" onclick="toggleMenu()">Home</a></li>
+      <li><a href="index.html#services" class="mobile-menu__link" onclick="toggleMenu()">Services</a></li>
+      <li><a href="index.html#about-us" class="mobile-menu__link" onclick="toggleMenu()">About</a></li>
+      <li><a href="gallery.html" class="mobile-menu__link" onclick="toggleMenu()">Gallery</a></li>
+    </ul>
+    <a href="contact.html" class="navbar__cta mobile-menu__cta" onclick="toggleMenu()" style="text-decoration: none;">Get in Touch</a>
+  </div>
 
   <!-- ── Contact Content ──────────────────────────────── -->
   <main class="content contact-page" id="mainContent">
@@ -192,6 +209,27 @@
         delay: 0.8
       });
     });
+
+    // ── Mobile Menu Toggle ──────────────────────────────────
+    function toggleMenu() {
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      
+      if (!hamburger || !mobileMenu) return;
+
+      hamburger.classList.toggle('navbar__hamburger--active');
+      mobileMenu.classList.toggle('mobile-menu--active');
+      
+      if (mobileMenu.classList.contains('mobile-menu--active')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    }
+
+    window.toggleMenu = toggleMenu;
+
+    document.getElementById('hamburger').addEventListener('click', toggleMenu);
   </script>
 
 </body>

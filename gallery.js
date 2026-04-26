@@ -150,6 +150,30 @@
     });
   }
 
+  // ── Mobile Menu Toggle ──────────────────────────────────
+  function toggleMenu() {
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    if (!hamburger || !mobileMenu) return;
+
+    hamburger.classList.toggle('navbar__hamburger--active');
+    mobileMenu.classList.toggle('mobile-menu--active');
+    
+    if (mobileMenu.classList.contains('mobile-menu--active')) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }
+
+  window.toggleMenu = toggleMenu;
+
+  const hamburger = document.getElementById('hamburger');
+  if (hamburger) {
+    hamburger.addEventListener('click', toggleMenu);
+  }
+
   // ── Boot ────────────────────────────────────────────────
   function init() {
     dismissLoading();

@@ -186,6 +186,90 @@ a {
   box-shadow: 0 4px 24px var(--gold-glow);
 }
 
+/* ── Navbar Hamburger ────────────────────────────────────── */
+.navbar__hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+}
+
+.navbar__hamburger span {
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--gold);
+  margin: 6px 0;
+  transition: transform 0.4s var(--ease-smooth), opacity 0.4s var(--ease-smooth);
+}
+
+/* Hamburger animation to X */
+.navbar__hamburger--active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.navbar__hamburger--active span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar__hamburger--active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ── Mobile Menu Overlay ────────────────────────────────── */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xl);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s var(--ease-smooth), visibility 0.5s var(--ease-smooth);
+}
+
+.mobile-menu--active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu__links {
+  list-style: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.mobile-menu__link {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.3s var(--ease-smooth);
+}
+
+.mobile-menu__link:hover {
+  color: var(--gold);
+}
+
+.mobile-menu__cta {
+  margin-top: var(--space-md);
+}
+
 /* ── Hero Section ────────────────────────────────────────── */
 .hero {
   position: relative;
@@ -1184,30 +1268,105 @@ a {
     letter-spacing: 2px;
   }
 
-  .navbar__links {
-    display: none; /* hamburger menu for later */
+  .navbar__links, .navbar__cta {
+    display: none;
+  }
+
+  /* Ensure CTA is visible in mobile menu */
+  .mobile-menu .navbar__cta {
+    display: inline-block;
+  }
+
+  .navbar__hamburger {
+    display: block;
   }
 
   .navbar__logo {
     height: 36px;
   }
 
+  /* Partner logos smaller on mobile */
+  .marquee__logo {
+    height: 24px;
+  }
+
+  .hero__tagline h1 {
+    font-size: clamp(2.5rem, 10vw, 4.5rem);
+  }
+
   .tagline--semibold {
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
     letter-spacing: 0.12em;
   }
 
   .tagline--bold {
     letter-spacing: 0.08em;
   }
+
+  /* Gallery Teaser Mobile Fix - Full Container Width & Vertical Stacking */
+  .gallery-teaser {
+    padding: var(--space-xl) 1.5rem;
+  }
+
+  .gallery-teaser__container {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .gallery-teaser__content {
+    padding: 0;
+    text-align: left;
+  }
+
+  .gallery-teaser__visuals {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    height: auto;
+    margin: 0;
+    perspective: none;
+  }
+
+  .teaser-track {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+    width: 100%;
+    display: block;
+  }
+
+  .teaser-image {
+    display: none;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 4 / 5;
+    border-radius: 12px;
+    filter: grayscale(0%);
+    transform: none !important;
+    opacity: 1 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .teaser-image:hover {
+    width: 100% !important;
+    transform: none !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  .teaser-image--1 {
+    display: block;
+  }
 }
 
 @media (max-width: 480px) {
   .hero__tagline h1 {
-    font-size: 2rem;
+    font-size: 3.2rem;
   }
 
   .tagline--semibold {
-    font-size: 1.3rem;
+    font-size: 1.8rem;
   }
 
   .comparison__handle {

@@ -39,7 +39,24 @@
           style="color: var(--gold); border-bottom: 1px solid var(--gold);">Gallery</a></li>
     </ul>
     <a href="contact.html" class="navbar__cta" id="nav-quote" style="text-decoration: none;">Get in Touch</a>
+    
+    <button class="navbar__hamburger" id="hamburger" aria-label="Toggle Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
+
+  <!-- ── Mobile Menu Overlay ────────────────────────────────── -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-menu__links">
+      <li><a href="index.html" class="mobile-menu__link" onclick="toggleMenu()">Home</a></li>
+      <li><a href="index.html#services" class="mobile-menu__link" onclick="toggleMenu()">Services</a></li>
+      <li><a href="index.html#about-us" class="mobile-menu__link" onclick="toggleMenu()">About</a></li>
+      <li><a href="gallery.html" class="mobile-menu__link" onclick="toggleMenu()" style="color: var(--gold);">Gallery</a></li>
+    </ul>
+    <a href="contact.html" class="navbar__cta mobile-menu__cta" onclick="toggleMenu()" style="text-decoration: none;">Get in Touch</a>
+  </div>
 
   <!-- ── Gallery Content ──────────────────────────────── -->
   <main class="content gallery-page" id="mainContent">

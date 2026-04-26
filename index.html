@@ -69,11 +69,28 @@ Do not introduce new fonts or generic colors.
       <li><a href="gallery.html" class="navbar__link" id="nav-gallery">Gallery</a></li>
     </ul>
     <a href="contact.html" class="navbar__cta" id="nav-quote" style="text-decoration: none;">Get in Touch</a>
+    
+    <button class="navbar__hamburger" id="hamburger" aria-label="Toggle Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
+
+  <!-- ── Mobile Menu Overlay ────────────────────────────────── -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-menu__links">
+      <li><a href="#" class="mobile-menu__link" onclick="toggleMenu()">Home</a></li>
+      <li><a href="#services" class="mobile-menu__link" onclick="toggleMenu()">Services</a></li>
+      <li><a href="#about-us" class="mobile-menu__link" onclick="toggleMenu()">About</a></li>
+      <li><a href="gallery.html" class="mobile-menu__link" onclick="toggleMenu()">Gallery</a></li>
+    </ul>
+    <a href="contact.html" class="navbar__cta mobile-menu__cta" onclick="toggleMenu()" style="text-decoration: none;">Get in Touch</a>
+  </div>
 
   <!-- ── Hero Section ─────────────────────────────────── -->
   <section class="hero" id="hero">
-    <video class="hero__video" id="heroVideo" preload="auto" muted playsinline>
+    <video class="hero__video" id="heroVideo" preload="auto" autoplay muted playsinline>
       <source src="assets/herovid_scroll.mp4" type="video/mp4">
     </video>
 
@@ -156,85 +173,6 @@ Do not introduce new fonts or generic colors.
       </div>
     </section>
 
-    <!-- ── Gallery Teaser ─────────────────────────────────── -->
-    <section class="gallery-teaser" id="gallery">
-      <div class="gallery-teaser__container">
-        <div class="gallery-teaser__content">
-          <span class="gallery-teaser__label">Our Work</span>
-          <h2 class="gallery-teaser__heading">Elevating Ottawa's<br>Finest Homes</h2>
-          <div class="gallery-teaser__rule"></div>
-          <p class="gallery-teaser__text">
-            Explore our curated gallery of premium garage door installations. From modern glass and aluminum to classic wood carriage designs, see how Majestic brings visionary architecture to life.
-          </p>
-          <a href="gallery.html" class="navbar__cta" style="text-decoration: none; margin-top: 1.5rem; display: inline-block;">View Full Gallery</a>
-        </div>
-        
-        <div class="gallery-teaser__visuals">
-          <div class="teaser-track">
-            <!-- Asymmetrical/staggered layout images -->
-            <div class="teaser-image teaser-image--1">
-              <img src="assets/garageshots/beautiful1.webp" alt="Beautiful garage door installation 1">
-            </div>
-            <div class="teaser-image teaser-image--2">
-              <img src="assets/garageshots/beautiful2.webp" alt="Beautiful garage door installation 2">
-            </div>
-            <div class="teaser-image teaser-image--3">
-              <img src="assets/garageshots/beautiful3.webp" alt="Beautiful garage door installation 3">
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Partners Marquee ────────────────────────────── -->
-    <section class="partners" id="partners">
-      <div class="partners__header">
-        <span class="partners__label">Our Partners</span>
-        <h2 class="partners__heading">Trusted by the Industry's Finest</h2>
-        <div class="partners__rule"></div>
-      </div>
-
-      <div class="marquee" aria-label="Partner brand logos">
-        <div class="marquee__track">
-          <!-- First set (3× logos to guarantee viewport coverage) -->
-          <div class="marquee__group">
-            <img src="assets/marquee/amarr.svg" alt="Amarr" class="marquee__logo">
-            <img src="assets/marquee/chamberlain.svg" alt="Chamberlain" class="marquee__logo">
-            <img src="assets/marquee/garaga.svg" alt="Garaga" class="marquee__logo">
-            <img src="assets/marquee/genie.svg" alt="Genie" class="marquee__logo">
-            <img src="assets/marquee/Listmaster.svg" alt="Liftmaster" class="marquee__logo">
-            <img src="assets/marquee/amarr.svg" alt="Amarr" class="marquee__logo">
-            <img src="assets/marquee/chamberlain.svg" alt="Chamberlain" class="marquee__logo">
-            <img src="assets/marquee/garaga.svg" alt="Garaga" class="marquee__logo">
-            <img src="assets/marquee/genie.svg" alt="Genie" class="marquee__logo">
-            <img src="assets/marquee/Listmaster.svg" alt="Liftmaster" class="marquee__logo">
-            <img src="assets/marquee/amarr.svg" alt="Amarr" class="marquee__logo">
-            <img src="assets/marquee/chamberlain.svg" alt="Chamberlain" class="marquee__logo">
-            <img src="assets/marquee/garaga.svg" alt="Garaga" class="marquee__logo">
-            <img src="assets/marquee/genie.svg" alt="Genie" class="marquee__logo">
-            <img src="assets/marquee/Listmaster.svg" alt="Liftmaster" class="marquee__logo">
-          </div>
-          <!-- Duplicate for seamless loop -->
-          <div class="marquee__group" aria-hidden="true">
-            <img src="assets/marquee/amarr.svg" alt="" class="marquee__logo">
-            <img src="assets/marquee/chamberlain.svg" alt="" class="marquee__logo">
-            <img src="assets/marquee/garaga.svg" alt="" class="marquee__logo">
-            <img src="assets/marquee/genie.svg" alt="" class="marquee__logo">
-            <img src="assets/marquee/Listmaster.svg" alt="" class="marquee__logo">
-            <img src="assets/marquee/amarr.svg" alt="" class="marquee__logo">
-            <img src="assets/marquee/chamberlain.svg" alt="" class="marquee__logo">
-            <img src="assets/marquee/garaga.svg" alt="" class="marquee__logo">
-            <img src="assets/marquee/genie.svg" alt="" class="marquee__logo">
-            <img src="assets/marquee/Listmaster.svg" alt="" class="marquee__logo">
-            <img src="assets/marquee/amarr.svg" alt="" class="marquee__logo">
-            <img src="assets/marquee/chamberlain.svg" alt="" class="marquee__logo">
-            <img src="assets/marquee/garaga.svg" alt="" class="marquee__logo">
-            <img src="assets/marquee/genie.svg" alt="" class="marquee__logo">
-            <img src="assets/marquee/Listmaster.svg" alt="" class="marquee__logo">
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- ── Services / What We Do ──────────────────────── -->
     <section class="services" id="services">
@@ -405,6 +343,86 @@ Do not introduce new fonts or generic colors.
 
       </div>
     </section>
+
+
+    <!-- ── Gallery Teaser ─────────────────────────────────── -->
+
+    <section class="gallery-teaser" id="gallery">
+      <div class="gallery-teaser__container">
+        <div class="gallery-teaser__content">
+          <span class="gallery-teaser__label">Our Work</span>
+          <h2 class="gallery-teaser__heading">Elevating Ottawa's<br>Finest Homes</h2>
+          <div class="gallery-teaser__rule"></div>
+          <p class="gallery-teaser__text">
+            Explore our curated gallery of premium garage door installations. From modern glass and aluminum to classic wood carriage designs, see how Majestic brings visionary architecture to life.
+          </p>
+          <a href="gallery.html" class="navbar__cta" style="text-decoration: none; margin-top: 1.5rem; display: inline-block;">View Full Gallery</a>
+        </div>
+        
+        <div class="gallery-teaser__visuals">
+          <div class="teaser-track">
+            <!-- Asymmetrical/staggered layout images -->
+            <div class="teaser-image teaser-image--1">
+              <img src="assets/garageshots/beautiful1.webp" alt="Beautiful garage door installation 1">
+            </div>
+            <div class="teaser-image teaser-image--2">
+              <img src="assets/garageshots/beautiful2.webp" alt="Beautiful garage door installation 2">
+            </div>
+            <div class="teaser-image teaser-image--3">
+              <img src="assets/garageshots/beautiful3.webp" alt="Beautiful garage door installation 3">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Partners Marquee ────────────────────────────── -->
+    <section class="partners" id="partners">
+      <div class="partners__header">
+        <span class="partners__label">Our Partners</span>
+        <h2 class="partners__heading">Trusted by the Industry's Finest</h2>
+        <div class="partners__rule"></div>
+      </div>
+
+      <div class="marquee" aria-label="Partner brand logos">
+        <div class="marquee__track">
+          <!-- First set (3× logos to guarantee viewport coverage) -->
+          <div class="marquee__group">
+            <img src="assets/marquee/amarr.svg" alt="Amarr" class="marquee__logo">
+            <img src="assets/marquee/chamberlain.svg" alt="Chamberlain" class="marquee__logo">
+            <img src="assets/marquee/garaga.svg" alt="Garaga" class="marquee__logo">
+            <img src="assets/marquee/Listmaster.svg" alt="Liftmaster" class="marquee__logo">
+            <img src="assets/marquee/amarr.svg" alt="Amarr" class="marquee__logo">
+            <img src="assets/marquee/chamberlain.svg" alt="Chamberlain" class="marquee__logo">
+            <img src="assets/marquee/garaga.svg" alt="Garaga" class="marquee__logo">
+            <img src="assets/marquee/Listmaster.svg" alt="Liftmaster" class="marquee__logo">
+            <img src="assets/marquee/amarr.svg" alt="Amarr" class="marquee__logo">
+            <img src="assets/marquee/chamberlain.svg" alt="Chamberlain" class="marquee__logo">
+            <img src="assets/marquee/garaga.svg" alt="Garaga" class="marquee__logo">
+            <img src="assets/marquee/Listmaster.svg" alt="Liftmaster" class="marquee__logo">
+          </div>
+          <!-- Duplicate for seamless loop -->
+          <div class="marquee__group" aria-hidden="true">
+            <img src="assets/marquee/amarr.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/chamberlain.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/garaga.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/Listmaster.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/amarr.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/chamberlain.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/garaga.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/Listmaster.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/amarr.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/chamberlain.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/garaga.svg" alt="" class="marquee__logo">
+            <img src="assets/marquee/Listmaster.svg" alt="" class="marquee__logo">
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
 
     <!-- ── About Us (The Team & History) ────────────────── -->
     <section class="about-us" id="about-us">

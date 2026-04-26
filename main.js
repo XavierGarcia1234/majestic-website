@@ -21,16 +21,12 @@
   const scrollIndicator = document.getElementById('scrollIndicator');
   const loadingOverlay  = document.getElementById('loadingOverlay');
   const loadingBar      = document.getElementById('loadingBar');
+  const hamburger       = document.getElementById('hamburger');
+  const mobileMenu      = document.getElementById('mobileMenu');
 
   // ── State ───────────────────────────────────────────────
   let videoReady   = false;
   let taglineShown = false;
-  let targetTime   = 0;
-  let currentTime  = 0;
-
-  // Lerp factor — controls the smooth glide speed
-  // Higher = more responsive, lower = smoother glide
-  const LERP = 0.12;
 
   // ── Register GSAP Plugin ────────────────────────────────
   gsap.registerPlugin(ScrollTrigger);
@@ -99,25 +95,7 @@
     }, 200);
   }
 
-  // ── Smooth rAF Interpolation Loop ──────────────────────
-  // Runs every frame at 60fps. Smoothly lerps video.currentTime
-  // toward the scroll-target time. Because the video has every
-  // frame as a keyframe, seeking is instant — no decode lag.
-  function startSmoothLoop() {
-    function tick() {
-      if (videoReady && video.duration) {
-        const delta = targetTime - currentTime;
 
-        if (Math.abs(delta) > 0.005) {
-          currentTime += delta * LERP;
-          currentTime = Math.max(0, Math.min(currentTime, video.duration));
-          video.currentTime = currentTime;
-        }
-      }
-      requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-  }
 
   // ── Show Tagline + Navbar ───────────────────────────────
   function revealTagline() {
@@ -146,41 +124,36 @@
     navbar.classList.add('navbar--hidden');
   }
 
-  // ── Initialize ScrollTrigger ────────────────────────────
-  function initScrollVideo() {
-    video.currentTime = 0;
-    currentTime = 0;
-    targetTime = 0;
+  // ── Initialize Hero Video ───────────────────────────────
+  function initHeroVideo() {
+    const startVideo = () => {
+      video.playbackRate = 1.25;
+      video.play().catch(err => console.warn("Autoplay blocked:", err));
+      
+      // Reveal tagline and navbar immediately after a short intro delay
+      setTimeout(() => {
+        revealTagline();
+      }, 800);
+    };
 
-    startSmoothLoop();
+    if (videoReady) {
+      startVideo();
+    } else {
+      video.addEventListener('loadeddata', startVideo, { once: true });
+    }
 
+    // Simple scroll trigger to hide scroll indicator
     ScrollTrigger.create({
       trigger: hero,
       start: 'top top',
-      end: '+=300%',
-      pin: true,
-      scrub: 0.1,
+      end: 'bottom center',
       onUpdate: (self) => {
-        if (!videoReady || !video.duration) return;
-
-        // Map 0–0.85 scroll to full video, 0.85–1.0 holds final frame
-        const videoProgress = Math.min(self.progress / 0.85, 1);
-        targetTime = videoProgress * video.duration;
-
-        // Scroll indicator
-        if (self.progress > 0.02) {
+        if (self.progress > 0.05) {
           scrollIndicator.classList.add('scroll-indicator--hidden');
         } else {
           scrollIndicator.classList.remove('scroll-indicator--hidden');
         }
-
-        // Tagline reveal
-        if (self.progress >= 0.85) {
-          revealTagline();
-        } else if (self.progress < 0.8) {
-          hideTagline();
-        }
-      },
+      }
     });
   }
 
@@ -531,6 +504,26 @@
     });
   }
 
+  // ── Mobile Menu Toggle ──────────────────────────────────
+  function toggleMenu() {
+    hamburger.classList.toggle('navbar__hamburger--active');
+    mobileMenu.classList.toggle('mobile-menu--active');
+    
+    // Prevent scrolling when menu is open
+    if (mobileMenu.classList.contains('mobile-menu--active')) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Expose toggleMenu to window for the onclick handlers (if needed) or wire up here
+  window.toggleMenu = toggleMenu;
+
+  if (hamburger) {
+    hamburger.addEventListener('click', toggleMenu);
+  }
+
   // ── Boot ────────────────────────────────────────────────
   async function init() {
     document.body.style.overflow = 'hidden';
@@ -539,7 +532,7 @@
 
     document.body.style.overflow = '';
     dismissLoading();
-    initScrollVideo();
+    initHeroVideo();
     initComparison();
     initAboutAnimations();
     initAboutUsAnimations();

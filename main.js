@@ -394,7 +394,7 @@
       },
     });
 
-    // Marquee entrance
+    // Marquee entrance (only on desktop to avoid scroll conflicts if needed, or keep for both but refresh)
     gsap.from('.reviews-marquee', {
       opacity: 0,
       y: 40,
@@ -402,7 +402,7 @@
       ease: 'power3.out',
       scrollTrigger: {
         trigger: '.reviews-marquee',
-        start: 'top 90%',
+        start: 'top 95%', // increased start threshold to ensure it triggers
         toggleActions: 'play none none none',
       },
     });
@@ -501,6 +501,15 @@
           target.scrollIntoView({ behavior: 'smooth' });
         }
       }, 500); // Allow time for layout and initial animations
+    }
+
+    // Refresh ScrollTrigger after all images and fonts load to fix 50/50 disappearance bug
+    if (document.readyState === 'complete') {
+      setTimeout(() => ScrollTrigger.refresh(), 100);
+    } else {
+      window.addEventListener('load', () => {
+        ScrollTrigger.refresh();
+      });
     }
   }
 

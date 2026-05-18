@@ -652,6 +652,7 @@ a {
     0 8px 40px rgba(0, 0, 0, 0.5),
     0 0 80px rgba(201, 168, 76, 0.06);
   border: 1px solid rgba(201, 168, 76, 0.1);
+  touch-action: pan-y;
 }
 
 .comparison__img {
@@ -730,6 +731,7 @@ a {
   cursor: ew-resize;
   transition: transform 0.2s var(--ease-smooth),
               box-shadow 0.2s var(--ease-smooth);
+  touch-action: none;
 }
 
 .comparison__handle:hover {
@@ -1739,6 +1741,27 @@ a {
 @media (max-width: 960px) {
   .review-card {
     flex: 0 0 clamp(280px, 70vw, 340px);
+    scroll-snap-align: center;
+  }
+
+  .reviews-marquee__track {
+    animation: none;
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 1rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .reviews-marquee__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* To prevent scroll jumping or awkwardness, remove the duplicate second group on mobile so it doesn't just infinitely repeat for a manual scroll */
+  .reviews-marquee__group[aria-hidden="true"] {
+    display: none;
   }
 }
 

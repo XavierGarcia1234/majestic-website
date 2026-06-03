@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Digital Catalogs | Majestic Garage Doors</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=8">
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
   <style>
     .catalog-container {
@@ -129,12 +129,10 @@
 
   <!-- ── Navbar ───────────────────────────────────────── -->
   <nav class="navbar navbar--visible" id="navbar">
-    <div class="navbar__brand">
-      <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:var(--space-md);">
-        <img src="assets/logo.svg" alt="Majestic Garage Doors" class="navbar__logo">
-        <span class="navbar__brand-text">Majestic</span>
-      </a>
-    </div>
+    <a href="index.html" class="navbar__logo-link">
+      <img src="assets/logo.svg" alt="Majestic Garage Doors" class="navbar__logo">
+    </a>
+    <a href="index.html" class="navbar__brand-text" style="text-decoration:none;">MAJESTIC GARAGE DOORS</a>
     <ul class="navbar__links">
             <li><a href="services.html" class="navbar__link" id="nav-services">Services</a></li>
       <li class="navbar__dropdown">
@@ -216,19 +214,12 @@
 
         <div class="flip-book-wrapper" id="flipbookWrapper" style="width: 100%; max-width: 1200px; margin: 0 auto; position: relative;">
           <!-- Page Flip container -->
-          <div id="flipbook" class="flipbook" style="background: var(--bg-primary); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6); margin: 0 auto;">
+          <div id="flipbook" class="flipbook" style="background: var(--bg-primary); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6); margin: 0 auto; -webkit-tap-highlight-color: transparent;">
             <!-- Placeholder pages removed for brevity, initialized dynamically -->
           </div>
         </div>
       </div>
     </section>
-
-    <!-- Magnifier Element -->
-    <div id="magnifier">
-      <canvas id="magnifierCanvas"></canvas>
-    </div>
-
-      <!-- Global Footer Teaser (From Main Design System) -->
     <section class="gallery-footer-cta">
       <h2 class="gallery-hero__heading" style="font-size: clamp(2rem, 4vw, 3rem);">Ready to Upgrade?</h2>
       <p class="gallery-hero__text">Let's build the perfect entrance for your home.</p>
@@ -236,6 +227,11 @@
     </section>
 
   </main>
+
+  <!-- Magnifier Element -->
+  <div id="magnifier">
+    <canvas id="magnifierCanvas"></canvas>
+  </div>
 
   <!-- ── Footer ───────────────────────────────────────── -->
   <footer class="site-footer">
@@ -294,11 +290,11 @@
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js?v=8"></script>
   <script>
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js?v=8"></script>
   <script>
     document.addEventListener('DOMContentLoaded', async function() {
       const loadingOverlay = document.getElementById('loadingOverlay');
@@ -352,10 +348,11 @@
           maxHeight: 3000,
           maxShadowOpacity: 0.5,
           showCover: true,
-          mobileScrollSupport: true,
+          mobileScrollSupport: false, // Set to false to prevent stpageflip from altering container scroll properties and causing layout thrashing
           usePortrait: true,
           flippingTime: 400, // Speeds up the animation (default is 1000ms)
-          useMouseEvents: !isTouch // Disable internal touch/swipe on mobile to allow native panning
+          useMouseEvents: !isTouch, // Disable internal touch/swipe on mobile to allow native panning
+          showPageCorners: false // Disable corner animation to prevent magnifier glitching
         });
 
         pageFlip.loadFromHTML(document.querySelectorAll('.page'));
@@ -391,11 +388,14 @@
 
         // Add tap-to-flip for touch devices since swiping is disabled
         if (isTouch) {
+          // Setting touch-action: manipulation removes the 300ms click delay on mobile
+          flipbookEl.style.touchAction = 'manipulation';
+          
           flipbookEl.addEventListener('click', (e) => {
             const rect = flipbookEl.getBoundingClientRect();
-            // Get click X coordinate relative to the flipbook element
             const clickX = e.clientX - rect.left;
-            // If clicked on left half, flip previous. If right half, flip next.
+            
+            // Determine if the tap was on the left or right half
             if (clickX < rect.width / 2) {
               pageFlip.flipPrev();
             } else {
@@ -423,10 +423,12 @@
           canvases.forEach((canvas) => {
             canvas.addEventListener('mouseenter', () => {
               mag.style.display = 'block';
+              canvas.style.cursor = 'none';
             });
             
             canvas.addEventListener('mouseleave', () => {
               mag.style.display = 'none';
+              canvas.style.cursor = '';
             });
             
             canvas.addEventListener('mousemove', (e) => {
@@ -434,9 +436,9 @@
               const x = e.clientX - rect.left;
               const y = e.clientY - rect.top;
               
-              // Position magnifier glass
-              mag.style.left = (e.pageX + 20) + 'px';
-              mag.style.top = (e.pageY - magHeight - 20) + 'px';
+              // Position magnifier glass centered on cursor
+              mag.style.left = (e.pageX - (magWidth / 2)) + 'px';
+              mag.style.top = (e.pageY - (magHeight / 2)) + 'px';
               
               magCtx.fillStyle = '#ffffff';
               magCtx.fillRect(0, 0, magWidth, magHeight);
@@ -474,5 +476,6 @@
     });
   </script>
 
+  <script src="menu.js?v=8"></script>
 </body>
 </html>

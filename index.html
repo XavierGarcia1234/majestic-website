@@ -40,7 +40,7 @@ Do not introduce new fonts or generic colors.
   <title>Majestic Garage Doors | Quality Meets Luxury</title>
 
   <!-- Styles -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=8">
 
   <!-- Favicon (SVG) -->
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
@@ -58,12 +58,10 @@ Do not introduce new fonts or generic colors.
 
   <!-- ── Navbar ───────────────────────────────────────── -->
   <nav class="navbar navbar--visible" id="navbar">
-    <div class="navbar__brand">
-      <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:var(--space-md);">
-        <img src="assets/logo.svg" alt="Majestic Garage Doors" class="navbar__logo">
-        <span class="navbar__brand-text">Majestic</span>
-      </a>
-    </div>
+    <a href="index.html" class="navbar__logo-link">
+      <img src="assets/logo.svg" alt="Majestic Garage Doors" class="navbar__logo">
+    </a>
+    <a href="index.html" class="navbar__brand-text" style="text-decoration:none;">MAJESTIC GARAGE DOORS</a>
     <ul class="navbar__links">
             <li><a href="services.html" class="navbar__link" id="nav-services">Services</a></li>
       <li class="navbar__dropdown">
@@ -369,6 +367,10 @@ Do not introduce new fonts or generic colors.
           </span>
         </a>
 
+      </div>
+
+      <div style="text-align: center; margin-top: var(--space-2xl); margin-bottom: 2rem;">
+        <a href="services.html" class="navbar__cta" style="display: inline-block; text-decoration: none;">View All Services</a>
       </div>
     </section>
 
@@ -916,11 +918,12 @@ Do not introduce new fonts or generic colors.
   </footer>
 
   <!-- ── Scripts ──────────────────────────────────────── -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Draggable.min.js"></script>
-  <script src="main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js?v=8"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js?v=8"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Draggable.min.js?v=8"></script>
+  <script src="main.js?v=8"></script>
 
+  <script src="menu.js?v=8"></script>
 </body>
 
 </html>

@@ -9,7 +9,7 @@
   <title>Contact Us | Majestic Garage Doors</title>
 
   <!-- Styles -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=8">
 
   <!-- Favicon (SVG) -->
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
@@ -27,12 +27,10 @@
 
   <!-- ── Navbar ───────────────────────────────────────── -->
   <nav class="navbar navbar--visible" id="navbar">
-    <div class="navbar__brand">
-      <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:var(--space-md);">
-        <img src="assets/logo.svg" alt="Majestic Garage Doors" class="navbar__logo">
-        <span class="navbar__brand-text">Majestic</span>
-      </a>
-    </div>
+    <a href="index.html" class="navbar__logo-link">
+      <img src="assets/logo.svg" alt="Majestic Garage Doors" class="navbar__logo">
+    </a>
+    <a href="index.html" class="navbar__brand-text" style="text-decoration:none;">MAJESTIC GARAGE DOORS</a>
     <ul class="navbar__links">
             <li><a href="services.html" class="navbar__link" id="nav-services">Services</a></li>
       <li class="navbar__dropdown">
@@ -228,8 +226,8 @@
   </footer>
 
   <!-- ── Scripts ──────────────────────────────────────── -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js?v=8"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js?v=8"></script>
   <script>
     // simple load script so the page reveals smoothly
     window.addEventListener('load', () => {
@@ -241,6 +239,14 @@
         const select = document.getElementById('service');
         if (select) {
           select.value = service;
+        }
+      }
+
+      const product = urlParams.get('product');
+      if (product) {
+        const messageBox = document.getElementById('message');
+        if (messageBox) {
+          messageBox.value = `Hi Majestic Garage Doors, I'm interested in getting more information about the ${product}. Can you provide pricing and sizing details?`;
         }
       }
       
@@ -263,25 +269,7 @@
     });
 
     // ── Mobile Menu Toggle ──────────────────────────────────
-    function toggleMenu() {
-      const hamburger = document.getElementById('hamburger');
-      const mobileMenu = document.getElementById('mobileMenu');
-      
-      if (!hamburger || !mobileMenu) return;
 
-      hamburger.classList.toggle('navbar__hamburger--active');
-      mobileMenu.classList.toggle('mobile-menu--active');
-      
-      if (mobileMenu.classList.contains('mobile-menu--active')) {
-        document.body.style.overflow = 'hidden';
-      } else {
-        document.body.style.overflow = '';
-      }
-    }
-
-    window.toggleMenu = toggleMenu;
-
-    document.getElementById('hamburger').addEventListener('click', toggleMenu);
   </script>
 
   <!-- ── Formspree Integration ──────────────────────────── -->
@@ -299,6 +287,7 @@
   <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
   </script>
 
+  <script src="menu.js?v=8"></script>
 </body>
 
 </html>

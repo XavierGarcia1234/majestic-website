@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FAQ | Majestic Garage Doors</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=8">
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
   
   <!-- JSON-LD FAQ Schema -->
@@ -254,12 +254,10 @@
 
   <!-- ── Navbar ───────────────────────────────────────── -->
   <nav class="navbar navbar--visible" id="navbar">
-    <div class="navbar__brand">
-      <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:var(--space-md);">
-        <img src="assets/logo.svg" alt="Majestic Garage Doors" class="navbar__logo">
-        <span class="navbar__brand-text">Majestic</span>
-      </a>
-    </div>
+    <a href="index.html" class="navbar__logo-link">
+      <img src="assets/logo.svg" alt="Majestic Garage Doors" class="navbar__logo">
+    </a>
+    <a href="index.html" class="navbar__brand-text" style="text-decoration:none;">MAJESTIC GARAGE DOORS</a>
     <ul class="navbar__links">
             <li><a href="services.html" class="navbar__link" id="nav-services">Services</a></li>
       <li class="navbar__dropdown">
@@ -561,20 +559,7 @@
         </div>
       </div>
 
-      <!-- Category 5 -->
-      <div class="faq-category">
-        <h2 class="faq-category__title">Pricing & Quotes</h2>
-        
-        <div class="accordion">
-          <button class="accordion__btn">
-            Do you offer free estimates?
-            <span class="accordion__icon"></span>
-          </button>
-          <div class="accordion__content">
-            <p>Yes, we offer free, no-obligation quotes for all new door installations. For repairs, a service call fee may apply to diagnose the issue on-site.</p>
-          </div>
-        </div>
-      </div>
+
 
     </div>
       <!-- Global Footer Teaser (From Main Design System) -->
@@ -669,5 +654,6 @@
     });
   </script>
 
+  <script src="menu.js?v=8"></script>
 </body>
 </html>

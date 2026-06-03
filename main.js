@@ -450,25 +450,7 @@
     });
   }
 
-  // ── Mobile Menu Toggle ──────────────────────────────────
-  function toggleMenu() {
-    hamburger.classList.toggle('navbar__hamburger--active');
-    mobileMenu.classList.toggle('mobile-menu--active');
-    
-    // Prevent scrolling when menu is open
-    if (mobileMenu.classList.contains('mobile-menu--active')) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-  }
 
-  // Expose toggleMenu to window for the onclick handlers (if needed) or wire up here
-  window.toggleMenu = toggleMenu;
-
-  if (hamburger) {
-    hamburger.addEventListener('click', toggleMenu);
-  }
 
   // ── Boot ────────────────────────────────────────────────
   function init() {

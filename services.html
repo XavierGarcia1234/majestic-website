@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Services | Majestic Garage Doors</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=8">
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
   <style>
     .service-block {
@@ -92,12 +92,10 @@
   <!-- Navbar -->
   <!-- ── Navbar ───────────────────────────────────────── -->
   <nav class="navbar navbar--visible" id="navbar">
-    <div class="navbar__brand">
-      <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:var(--space-md);">
-        <img src="assets/logo.svg" alt="Majestic Garage Doors" class="navbar__logo">
-        <span class="navbar__brand-text">Majestic</span>
-      </a>
-    </div>
+    <a href="index.html" class="navbar__logo-link">
+      <img src="assets/logo.svg" alt="Majestic Garage Doors" class="navbar__logo">
+    </a>
+    <a href="index.html" class="navbar__brand-text" style="text-decoration:none;">MAJESTIC GARAGE DOORS</a>
     <ul class="navbar__links">
             <li><a href="services.html" class="navbar__link" id="nav-services">Services</a></li>
       <li class="navbar__dropdown">
@@ -325,5 +323,6 @@
     });
   </script>
 
+  <script src="menu.js?v=8"></script>
 </body>
 </html>

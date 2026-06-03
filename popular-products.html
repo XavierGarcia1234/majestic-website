@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Popular Products | Majestic Garage Doors</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=8">
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
   <style>
     .showroom {
@@ -111,12 +111,10 @@
 
   <!-- ── Navbar ───────────────────────────────────────── -->
   <nav class="navbar navbar--visible" id="navbar">
-    <div class="navbar__brand">
-      <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:var(--space-md);">
-        <img src="assets/logo.svg" alt="Majestic Garage Doors" class="navbar__logo">
-        <span class="navbar__brand-text">Majestic</span>
-      </a>
-    </div>
+    <a href="index.html" class="navbar__logo-link">
+      <img src="assets/logo.svg" alt="Majestic Garage Doors" class="navbar__logo">
+    </a>
+    <a href="index.html" class="navbar__brand-text" style="text-decoration:none;">MAJESTIC GARAGE DOORS</a>
     <ul class="navbar__links">
             <li><a href="services.html" class="navbar__link" id="nav-services">Services</a></li>
       <li class="navbar__dropdown">
@@ -200,37 +198,14 @@
           </div>
         </div>
 
-        <!-- Product 2 -->
-        <div class="product-card">
-          <div class="product-card__img-wrapper">
-            <img src="assets/garageshots/997656d2_8c4e_4a99_94b1_36ef05742997_1_1x.webp" alt="Modern Aluminum & Glass" class="product-card__img">
-          </div>
-          <div class="product-card__content">
-            <h3 class="product-card__title">Modern Aluminum & Glass</h3>
-            <p class="product-card__desc">Sleek, transparent, and ultra-modern. Perfect for contemporary architecture.</p>
-            <ul class="product-card__specs">
-              <li>Material: Heavy-Duty Aluminum</li>
-              <li>Glass: Frosted or Clear Tempered</li>
-              <li>R-Value: 6.0 (Standard)</li>
-            </ul>
-            <a href="contact.html?product=Modern Aluminum Glass" class="navbar__cta product-card__cta" style="display:inline-block; text-decoration:none;">Inquire About This Model</a>
-          </div>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="product-card">
-          <div class="product-card__img-wrapper">
-            <img src="assets/garageshots/image_1_1x.webp" alt="Premium Insulated Steel" class="product-card__img">
-          </div>
-          <div class="product-card__content">
-            <h3 class="product-card__title">Premium Insulated Steel</h3>
-            <p class="product-card__desc">Maximum durability and energy efficiency for the harsh Ottawa winters.</p>
-            <ul class="product-card__specs">
-              <li>Material: Multi-layer Steel</li>
-              <li>R-Value: 18.0 (Maximum Insulation)</li>
-              <li>Multiple Color Options</li>
-            </ul>
-            <a href="contact.html?product=Premium Insulated Steel" class="navbar__cta product-card__cta" style="display:inline-block; text-decoration:none;">Inquire About This Model</a>
+        <!-- More Coming Soon -->
+        <div class="product-card" style="display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.02); border: 1px dashed rgba(255, 255, 255, 0.1); min-height: 400px; text-align: center;">
+          <div class="product-card__content" style="flex: none; align-items: center;">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1.5rem; opacity: 0.8;">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+            </svg>
+            <h3 class="product-card__title" style="margin-bottom: 0.5rem; color: var(--gold); font-size: 1.75rem;">More Coming Soon</h3>
+            <p class="product-card__desc" style="margin-bottom: 0;">We're currently curating more premium selections for our showroom.</p>
           </div>
         </div>
       </div>
@@ -318,5 +293,6 @@
     });
   </script>
 
+  <script src="menu.js?v=8"></script>
 </body>
 </html>

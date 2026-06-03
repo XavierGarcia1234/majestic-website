@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services | Majestic Garage Doors</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <style>
+    .service-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+      padding: var(--space-2xl) clamp(1.5rem, 5vw, 6rem);
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    
+    @media (min-width: 900px) {
+      .service-block {
+        flex-direction: row;
+        gap: 5rem;
+      }
+      .service-block--reverse {
+        flex-direction: row-reverse;
+      }
+    }
+
+    .service-block__img-wrapper {
+      flex: 1;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+    
+    .service-block__img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+    }
+
+    .service-block__copy {
+      flex: 1;
+    }
+
+    .service-block__label {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .service-block__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+    
+    .service-block__rule {
+      width: 50px;
+      height: 1.5px;
+      background: var(--gold);
+      opacity: 0.5;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-block__text {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── Loading Overlay ──────────────────────────────── -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <img src="assets/logo.svg" alt="Majestic" class="loading-overlay__logo">
+    <div class="loading-overlay__bar-track">
+      <div class="loading-overlay__bar-fill" id="loadingBar"></div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <!-- ── Navbar ───────────────────────────────────────── -->
+  <nav class="navbar navbar--visible" id="navbar">
+    <div class="navbar__brand">
+      <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:var(--space-md);">
+        <img src="assets/logo.svg" alt="Majestic Garage Doors" class="navbar__logo">
+        <span class="navbar__brand-text">Majestic</span>
+      </a>
+    </div>
+    <ul class="navbar__links">
+            <li><a href="services.html" class="navbar__link" id="nav-services">Services</a></li>
+      <li class="navbar__dropdown">
+        <a href="#" class="navbar__link">Products & Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style="margin-left:4px"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <ul class="navbar__dropdown-menu">
+          <li class="navbar__dropdown-item"><a href="popular-products.html" class="navbar__dropdown-link">Popular Products</a></li>
+          <li class="navbar__dropdown-item"><a href="catalogs.html" class="navbar__dropdown-link">Catalogs</a></li>
+          <li class="navbar__dropdown-item"><a href="configurator.html" class="navbar__dropdown-link">Build Your Custom Door</a></li>
+        </ul>
+      </li>
+      <li class="navbar__dropdown">
+        <a href="#" class="navbar__link">About <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style="margin-left:4px"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <ul class="navbar__dropdown-menu">
+          <li class="navbar__dropdown-item"><a href="index.html#about-us" class="navbar__dropdown-link">About Us</a></li>
+          <li class="navbar__dropdown-item"><a href="faq.html" class="navbar__dropdown-link">FAQ</a></li>
+        </ul>
+      </li>
+      <li><a href="gallery.html" class="navbar__link" id="nav-gallery">Gallery</a></li>
+    </ul>
+    <a href="contact.html" class="navbar__cta" id="nav-quote" style="text-decoration: none;">Get in Touch</a>
+    
+    <button class="navbar__hamburger" id="hamburger" aria-label="Toggle Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ── Mobile Menu Overlay ────────────────────────────────── -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-menu__links">
+            <li><a href="services.html" class="mobile-menu__link" onclick="toggleMenu()">Services</a></li>
+      <li class="mobile-menu__dropdown">
+        <span class="mobile-menu__link">Products & Tools</span>
+        <ul class="mobile-menu__sublinks">
+          <li><a href="popular-products.html" class="mobile-menu__sublink" onclick="toggleMenu()">Popular Products</a></li>
+          <li><a href="catalogs.html" class="mobile-menu__sublink" onclick="toggleMenu()">Catalogs</a></li>
+          <li><a href="configurator.html" class="mobile-menu__sublink" onclick="toggleMenu()">Build Your Custom Door</a></li>
+        </ul>
+      </li>
+      <li class="mobile-menu__dropdown">
+        <span class="mobile-menu__link">About</span>
+        <ul class="mobile-menu__sublinks">
+          <li><a href="index.html#about-us" class="mobile-menu__sublink" onclick="toggleMenu()">About Us</a></li>
+          <li><a href="faq.html" class="mobile-menu__sublink" onclick="toggleMenu()">FAQ</a></li>
+        </ul>
+      </li>
+      <li><a href="gallery.html" class="mobile-menu__link" onclick="toggleMenu()">Gallery</a></li>
+    </ul>
+    <a href="contact.html" class="navbar__cta mobile-menu__cta" onclick="toggleMenu()" style="text-decoration: none;">Get in Touch</a>
+  </div>
+
+  <main class="content">
+    <section class="gallery-hero" style="padding-top: 150px; padding-bottom: 2rem; text-align: center;">
+      <div class="gallery-hero__content" style="max-width: 800px; margin: 0 auto;">
+        <span class="gallery-hero__label">Services</span>
+        <h1 class="gallery-hero__heading">Expert Solutions for<br><span class="gallery-hero__heading--gold">Every Need</span></h1>
+        <div class="gallery-hero__rule" style="margin: 1.5rem auto;"></div>
+        <p class="gallery-hero__text">From emergency repairs to custom installations, we deliver precision and quality.</p>
+      </div>
+    </section>
+
+    <!-- Installation -->
+    <section class="service-block" style="padding-top: 5rem;">
+      <div class="service-block__img-wrapper">
+        <img src="assets/garageshots/garage_door_installation_branded_1779573582641.webp" alt="Garage Door Installation" class="service-block__img">
+      </div>
+      <div class="service-block__copy">
+        <span class="service-block__label">Installation</span>
+        <h2 class="service-block__title">Custom Garage Door Installation</h2>
+        <div class="service-block__rule"></div>
+        <p class="service-block__text">Transform your home's exterior with our premium selection of residential and commercial garage doors. We ensure a flawless fit, perfect balance, and uncompromising style tailored to your architecture.</p>
+        <a href="contact.html?service=Garage Door Installation" class="navbar__cta" style="display:inline-block;">Inquire Now</a>
+      </div>
+    </section>
+
+    <!-- Spring Repair -->
+    <section class="service-block service-block--reverse">
+      <div class="service-block__img-wrapper">
+        <img src="assets/garageshots/spring_cable_plain_1779575646453.webp" alt="Spring Repair" class="service-block__img">
+      </div>
+      <div class="service-block__copy">
+        <span class="service-block__label">Repairs</span>
+        <h2 class="service-block__title">Spring & Cable Replacement</h2>
+        <div class="service-block__rule"></div>
+        <p class="service-block__text">Broken torsion springs and frayed cables are major safety hazards. Our certified technicians handle high-tension replacements quickly and safely to restore your door's smooth operation.</p>
+        <a href="contact.html?service=Spring & Cable Replacement" class="navbar__cta" style="display:inline-block;">Inquire Now</a>
+      </div>
+    </section>
+
+    <!-- Emergency Services -->
+    <section class="service-block">
+      <div class="service-block__img-wrapper">
+        <img src="assets/garageshots/emergency_garage_plain_1779575657943.webp" alt="Emergency Services" class="service-block__img">
+      </div>
+      <div class="service-block__copy">
+        <span class="service-block__label">24/7 Available</span>
+        <h2 class="service-block__title">Emergency Services</h2>
+        <div class="service-block__rule"></div>
+        <p class="service-block__text">Stuck door? Off-track panels? Security concern? We provide 24/7 rapid response for all your garage door emergencies. We're here when you need us most.</p>
+        <a href="contact.html?service=Emergency Services" class="navbar__cta" style="display:inline-block;">Inquire Now</a>
+      </div>
+    </section>
+    <!-- Opener Installation & Repair -->
+    <section class="service-block service-block--reverse">
+      <div class="service-block__img-wrapper">
+        <img src="assets/garageshots/opener_installation_plain_1779575669491.webp" alt="Opener Installation & Repair" class="service-block__img">
+      </div>
+      <div class="service-block__copy">
+        <span class="service-block__label">Smart Home</span>
+        <h2 class="service-block__title">Opener Installation & Repair</h2>
+        <div class="service-block__rule"></div>
+        <p class="service-block__text">Smart opener upgrades with Wi-Fi, battery backup, and whisper-quiet belt-drive systems. We install, program, and repair all major opener brands.</p>
+        <a href="contact.html?service=Opener Installation & Repair" class="navbar__cta" style="display:inline-block;">Inquire Now</a>
+      </div>
+    </section>
+
+    <!-- Panel Replacement -->
+    <section class="service-block">
+      <div class="service-block__img-wrapper">
+        <img src="assets/garageshots/panel_replacement_plain_1779575682598.webp" alt="Panel Replacement" class="service-block__img">
+      </div>
+      <div class="service-block__copy">
+        <span class="service-block__label">Restoration</span>
+        <h2 class="service-block__title">Panel Replacement</h2>
+        <div class="service-block__rule"></div>
+        <p class="service-block__text">Dented, cracked, or weather-worn panels? We source exact-match replacements to restore your door's strength and curb appeal — without a full replacement.</p>
+        <a href="contact.html?service=Panel Replacement" class="navbar__cta" style="display:inline-block;">Inquire Now</a>
+      </div>
+    </section>
+
+    <!-- Weather Sealing -->
+    <section class="service-block service-block--reverse">
+      <div class="service-block__img-wrapper">
+        <img src="assets/garageshots/image_2_1x.webp" alt="Weather Sealing" class="service-block__img">
+      </div>
+      <div class="service-block__copy">
+        <span class="service-block__label">Protection</span>
+        <h2 class="service-block__title">Weather Sealing</h2>
+        <div class="service-block__rule"></div>
+        <p class="service-block__text">Comprehensive weather seal replacement and insulation upgrades. Keep the elements out, energy costs down, and your garage protected year-round.</p>
+        <a href="contact.html?service=Weather Sealing" class="navbar__cta" style="display:inline-block;">Inquire Now</a>
+      </div>
+    </section>
+      <!-- Global Footer Teaser (From Main Design System) -->
+    <section class="gallery-footer-cta">
+      <h2 class="gallery-hero__heading" style="font-size: clamp(2rem, 4vw, 3rem);">Ready to Upgrade?</h2>
+      <p class="gallery-hero__text">Let's build the perfect entrance for your home.</p>
+      <a href="contact.html" class="navbar__cta" style="margin-top: 2rem; display: inline-block;">Get In Touch</a>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ───────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="site-footer__container">
+      <div class="site-footer__brand">
+        <div class="site-footer__brand-header">
+          <img src="assets/logo.svg" alt="Majestic Garage Doors" class="site-footer__logo">
+          <span class="site-footer__title">Majestic</span>
+        </div>
+        <p class="site-footer__text">Ottawa's Premier Garage Door Experts. Craftsmanship, precision, and luxury.</p>
+        <div class="site-footer__socials">
+          <a href="https://www.facebook.com/people/Majestic-Garage-Doors/100079625388112/" target="_blank" rel="noopener noreferrer" class="site-footer__social-link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/majesticgaragedoor?igsh=MW40dHuzZXYxMTUyMA==" target="_blank" rel="noopener noreferrer" class="site-footer__social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="site-footer__contact">
+        <h4 class="site-footer__heading">Contact Information</h4>
+        <div class="site-footer__rule"></div>
+        <ul class="site-footer__list">
+          <li><span class="site-footer__label">Email:</span> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=syedahmed1674@gmail.com" target="_blank" rel="noopener noreferrer">syedahmed1674@gmail.com</a></li>
+          <li><span class="site-footer__label">Phone:</span> <a href="tel:6134623918">(613)-462-3918</a></li>
+          <li><span class="site-footer__label">Emergency:</span> <a href="tel:6136149709">(613)-614-9709</a></li>
+          <li><span class="site-footer__label">Hours:</span> 24/7 Service</li>
+        </ul>
+      </div>
+      
+      <div class="site-footer__links">
+        <h4 class="site-footer__heading">Quick Links</h4>
+        <div class="site-footer__rule"></div>
+        <ul class="site-footer__list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 2rem;">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="popular-products.html">Products</a></li>
+          <li><a href="catalogs.html">Catalogs</a></li>
+          <li><a href="configurator.html">Configurator</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="index.html#about-us">About Us</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Get in Touch</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <p>&copy; 2026 Majestic Garage Doors. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('load', () => {
+      const loadingOverlay = document.getElementById('loadingOverlay');
+      const loadingBar = document.getElementById('loadingBar');
+      if (loadingBar) {
+        loadingBar.style.transition = 'width 0.2s ease-out';
+        loadingBar.style.width = '100%';
+      }
+      setTimeout(() => {
+        if (loadingOverlay) {
+          loadingOverlay.classList.add('loading-overlay--hidden');
+          setTimeout(() => { loadingOverlay.style.display = 'none'; }, 800);
+        }
+      }, 200);
+    });
+  </script>
+
+</body>
+</html>

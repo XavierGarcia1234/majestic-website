@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Catalogs | Majestic Garage Doors</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <style>
+    .catalog-container {
+      padding: var(--space-2xl) clamp(1.5rem, 5vw, 6rem);
+      max-width: 1280px;
+      margin: 0 auto;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Simple Flipbook Placeholder */
+    .flipbook-wrapper {
+      width: 100%;
+      max-width: 900px;
+      aspect-ratio: 16 / 9;
+      background: var(--bg-elevated);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    .flipbook-spine {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(to right, rgba(0,0,0,0.5), rgba(255,255,255,0.1), rgba(0,0,0,0.5));
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+
+    .flipbook-page {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .flipbook-page--left {
+      background: linear-gradient(to right, #111, #1a1a1a);
+    }
+    
+    .flipbook-page--right {
+      background: linear-gradient(to left, #111, #1a1a1a);
+    }
+
+    .flipbook-controls {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .flipbook-btn {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      padding: 0.5rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: var(--font-body);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.8rem;
+      transition: all 0.3s ease;
+    }
+
+    .flipbook-btn:hover {
+      background: var(--gold);
+      color: var(--bg-primary);
+    }
+
+    .flipbook-ui {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Force native touch on flipbook elements */
+    #flipbook, #flipbook * {
+      touch-action: auto !important;
+    }
+
+    /* Magnifier Lens */
+    #magnifier {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border: 2px solid var(--gold);
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      pointer-events: none;
+      display: none;
+      z-index: 9999;
+      background-color: var(--bg-primary);
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── Loading Overlay ──────────────────────────────── -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <img src="assets/logo.svg" alt="Majestic" class="loading-overlay__logo">
+    <div class="loading-overlay__bar-track">
+      <div class="loading-overlay__bar-fill" id="loadingBar"></div>
+    </div>
+  </div>
+
+  <!-- ── Navbar ───────────────────────────────────────── -->
+  <nav class="navbar navbar--visible" id="navbar">
+    <div class="navbar__brand">
+      <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:var(--space-md);">
+        <img src="assets/logo.svg" alt="Majestic Garage Doors" class="navbar__logo">
+        <span class="navbar__brand-text">Majestic</span>
+      </a>
+    </div>
+    <ul class="navbar__links">
+            <li><a href="services.html" class="navbar__link" id="nav-services">Services</a></li>
+      <li class="navbar__dropdown">
+        <a href="#" class="navbar__link">Products & Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style="margin-left:4px"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <ul class="navbar__dropdown-menu">
+          <li class="navbar__dropdown-item"><a href="popular-products.html" class="navbar__dropdown-link">Popular Products</a></li>
+          <li class="navbar__dropdown-item"><a href="catalogs.html" class="navbar__dropdown-link">Catalogs</a></li>
+          <li class="navbar__dropdown-item"><a href="configurator.html" class="navbar__dropdown-link">Build Your Custom Door</a></li>
+        </ul>
+      </li>
+      <li class="navbar__dropdown">
+        <a href="#" class="navbar__link">About <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style="margin-left:4px"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <ul class="navbar__dropdown-menu">
+          <li class="navbar__dropdown-item"><a href="index.html#about-us" class="navbar__dropdown-link">About Us</a></li>
+          <li class="navbar__dropdown-item"><a href="faq.html" class="navbar__dropdown-link">FAQ</a></li>
+        </ul>
+      </li>
+      <li><a href="gallery.html" class="navbar__link" id="nav-gallery">Gallery</a></li>
+    </ul>
+    <a href="contact.html" class="navbar__cta" id="nav-quote" style="text-decoration: none;">Get in Touch</a>
+    
+    <button class="navbar__hamburger" id="hamburger" aria-label="Toggle Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ── Mobile Menu Overlay ────────────────────────────────── -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-menu__links">
+            <li><a href="services.html" class="mobile-menu__link" onclick="toggleMenu()">Services</a></li>
+      <li class="mobile-menu__dropdown">
+        <span class="mobile-menu__link">Products & Tools</span>
+        <ul class="mobile-menu__sublinks">
+          <li><a href="popular-products.html" class="mobile-menu__sublink" onclick="toggleMenu()">Popular Products</a></li>
+          <li><a href="catalogs.html" class="mobile-menu__sublink" onclick="toggleMenu()">Catalogs</a></li>
+          <li><a href="configurator.html" class="mobile-menu__sublink" onclick="toggleMenu()">Build Your Custom Door</a></li>
+        </ul>
+      </li>
+      <li class="mobile-menu__dropdown">
+        <span class="mobile-menu__link">About</span>
+        <ul class="mobile-menu__sublinks">
+          <li><a href="index.html#about-us" class="mobile-menu__sublink" onclick="toggleMenu()">About Us</a></li>
+          <li><a href="faq.html" class="mobile-menu__sublink" onclick="toggleMenu()">FAQ</a></li>
+        </ul>
+      </li>
+      <li><a href="gallery.html" class="mobile-menu__link" onclick="toggleMenu()">Gallery</a></li>
+    </ul>
+    <a href="contact.html" class="navbar__cta mobile-menu__cta" onclick="toggleMenu()" style="text-decoration: none;">Get in Touch</a>
+  </div>
+
+  <main class="content">
+    <section class="gallery-hero" style="padding-top: 150px; text-align: center;">
+      <div class="gallery-hero__content" style="max-width: 800px; margin: 0 auto;">
+        <span class="gallery-hero__label">Library</span>
+        <h1 class="gallery-hero__heading">Digital<br><span class="gallery-hero__heading--gold">Catalogs</span></h1>
+        <div class="gallery-hero__rule" style="margin: 1.5rem auto;"></div>
+        <p class="gallery-hero__text">Browse our digital manufacturer catalogs to explore the full range of styles, colors, and technical specifications.</p>
+      </div>
+    </section>
+
+    <section class="catalog-container" style="padding-top: 2rem;">
+      <div id="flipbookUI" class="flipbook-ui">
+        <!-- Controls placed on TOP of the book -->
+        <div class="flipbook-controls" style="display: flex; gap: 1rem; margin-bottom: 1.5rem; margin-top: 0; flex-wrap: wrap; justify-content: center; z-index: 10;">
+          <button id="btn-prev" class="flipbook-btn">◄ Prev Page</button>
+          <button id="btn-next" class="flipbook-btn">Next Page ►</button>
+          <div style="width: 1px; background: var(--glass-border); margin: 0 0.5rem;"></div>
+          <a href="assets/Brochure_Amarr_Openings_Steel-B645.pdf" target="_blank" rel="noopener noreferrer" class="flipbook-btn" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            Open in New Tab
+          </a>
+        </div>
+
+        <div class="flip-book-wrapper" id="flipbookWrapper" style="width: 100%; max-width: 1200px; margin: 0 auto; position: relative;">
+          <!-- Page Flip container -->
+          <div id="flipbook" class="flipbook" style="background: var(--bg-primary); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6); margin: 0 auto;">
+            <!-- Placeholder pages removed for brevity, initialized dynamically -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Magnifier Element -->
+    <div id="magnifier">
+      <canvas id="magnifierCanvas"></canvas>
+    </div>
+
+      <!-- Global Footer Teaser (From Main Design System) -->
+    <section class="gallery-footer-cta">
+      <h2 class="gallery-hero__heading" style="font-size: clamp(2rem, 4vw, 3rem);">Ready to Upgrade?</h2>
+      <p class="gallery-hero__text">Let's build the perfect entrance for your home.</p>
+      <a href="contact.html" class="navbar__cta" style="margin-top: 2rem; display: inline-block;">Get In Touch</a>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ───────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="site-footer__container">
+      <div class="site-footer__brand">
+        <div class="site-footer__brand-header">
+          <img src="assets/logo.svg" alt="Majestic Garage Doors" class="site-footer__logo">
+          <span class="site-footer__title">Majestic</span>
+        </div>
+        <p class="site-footer__text">Ottawa's Premier Garage Door Experts. Craftsmanship, precision, and luxury.</p>
+        <div class="site-footer__socials">
+          <a href="https://www.facebook.com/people/Majestic-Garage-Doors/100079625388112/" target="_blank" rel="noopener noreferrer" class="site-footer__social-link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/majesticgaragedoor?igsh=MW40dHuzZXYxMTUyMA==" target="_blank" rel="noopener noreferrer" class="site-footer__social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="site-footer__contact">
+        <h4 class="site-footer__heading">Contact Information</h4>
+        <div class="site-footer__rule"></div>
+        <ul class="site-footer__list">
+          <li><span class="site-footer__label">Email:</span> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=syedahmed1674@gmail.com" target="_blank" rel="noopener noreferrer">syedahmed1674@gmail.com</a></li>
+          <li><span class="site-footer__label">Phone:</span> <a href="tel:6134623918">(613)-462-3918</a></li>
+          <li><span class="site-footer__label">Emergency:</span> <a href="tel:6136149709">(613)-614-9709</a></li>
+          <li><span class="site-footer__label">Hours:</span> 24/7 Service</li>
+        </ul>
+      </div>
+      
+      <div class="site-footer__links">
+        <h4 class="site-footer__heading">Quick Links</h4>
+        <div class="site-footer__rule"></div>
+        <ul class="site-footer__list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 2rem;">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="popular-products.html">Products</a></li>
+          <li><a href="catalogs.html">Catalogs</a></li>
+          <li><a href="configurator.html">Configurator</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="index.html#about-us">About Us</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Get in Touch</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <p>&copy; 2026 Majestic Garage Doors. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async function() {
+      const loadingOverlay = document.getElementById('loadingOverlay');
+      const loadingBar = document.getElementById('loadingBar');
+      if (loadingBar) {
+        loadingBar.style.transition = 'width 0.5s ease-out';
+        loadingBar.style.width = '40%';
+      }
+
+      try {
+        const pdfUrl = 'assets/Brochure_Amarr_Openings_Steel-B645.pdf';
+        const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
+        const numPages = pdf.numPages;
+
+        if (loadingBar) loadingBar.style.width = '70%';
+
+        // Get first page to set dimensions perfectly
+        const page1 = await pdf.getPage(1);
+        const viewport1 = page1.getViewport({ scale: 1 });
+        const baseWidth = viewport1.width;
+        const baseHeight = viewport1.height;
+
+        const flipbookEl = document.getElementById('flipbook');
+        flipbookEl.innerHTML = ''; // Clear placeholder pages
+
+        const canvases = [];
+        
+        // Create DOM elements for each page
+        for (let i = 1; i <= numPages; i++) {
+          const pageEl = document.createElement('div');
+          pageEl.className = 'page';
+          pageEl.style.backgroundColor = '#ffffff';
+
+          const canvas = document.createElement('canvas');
+          canvas.style.width = '100%';
+          canvas.style.height = '100%';
+          pageEl.appendChild(canvas);
+          flipbookEl.appendChild(pageEl);
+          canvases.push(canvas);
+        }
+
+        const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0 || window.matchMedia("(max-width: 768px)").matches;
+
+        const pageFlip = new St.PageFlip(flipbookEl, {
+          width: baseWidth, 
+          height: baseHeight, 
+          size: "stretch",
+          minWidth: 315,
+          maxWidth: 3000,
+          minHeight: 400,
+          maxHeight: 3000,
+          maxShadowOpacity: 0.5,
+          showCover: true,
+          mobileScrollSupport: true,
+          usePortrait: true,
+          flippingTime: 400, // Speeds up the animation (default is 1000ms)
+          useMouseEvents: !isTouch // Disable internal touch/swipe on mobile to allow native panning
+        });
+
+        pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+
+        // Render pages to canvas
+        for (let i = 1; i <= numPages; i++) {
+          pdf.getPage(i).then(page => {
+            const canvas = canvases[i - 1];
+            // alpha: false saves memory since PDF pages are usually opaque
+            const ctx = canvas.getContext('2d', { alpha: false });
+            // Scale 2.0 provides highly legible text for zooming in fullscreen
+            const scale = 2.0; 
+            const viewport = page.getViewport({ scale: scale });
+            
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+
+            const renderContext = {
+              canvasContext: ctx,
+              viewport: viewport
+            };
+            page.render(renderContext);
+          });
+        }
+
+        document.getElementById('btn-prev').addEventListener('click', () => {
+          pageFlip.flipPrev();
+        });
+
+        document.getElementById('btn-next').addEventListener('click', () => {
+          pageFlip.flipNext();
+        });
+
+        // Add tap-to-flip for touch devices since swiping is disabled
+        if (isTouch) {
+          flipbookEl.addEventListener('click', (e) => {
+            const rect = flipbookEl.getBoundingClientRect();
+            // Get click X coordinate relative to the flipbook element
+            const clickX = e.clientX - rect.left;
+            // If clicked on left half, flip previous. If right half, flip next.
+            if (clickX < rect.width / 2) {
+              pageFlip.flipPrev();
+            } else {
+              pageFlip.flipNext();
+            }
+          });
+        }
+
+        // Cleaned up unused logic
+
+        // --- Magnifier Logic ---
+        const mag = document.getElementById('magnifier');
+        const magCanvas = document.getElementById('magnifierCanvas');
+        const magCtx = magCanvas.getContext('2d', { alpha: false });
+        
+        // Settings
+        const zoom = 2.0;
+        const magWidth = 400;
+        const magHeight = 400;
+        
+        magCanvas.width = magWidth;
+        magCanvas.height = magHeight;
+
+        if (!isTouch) {
+          canvases.forEach((canvas) => {
+            canvas.addEventListener('mouseenter', () => {
+              mag.style.display = 'block';
+            });
+            
+            canvas.addEventListener('mouseleave', () => {
+              mag.style.display = 'none';
+            });
+            
+            canvas.addEventListener('mousemove', (e) => {
+              const rect = canvas.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              
+              // Position magnifier glass
+              mag.style.left = (e.pageX + 20) + 'px';
+              mag.style.top = (e.pageY - magHeight - 20) + 'px';
+              
+              magCtx.fillStyle = '#ffffff';
+              magCtx.fillRect(0, 0, magWidth, magHeight);
+              
+              const captureWidth = magWidth / zoom;
+              const captureHeight = magHeight / zoom;
+              
+              const captureX = x - captureWidth / 2;
+              const captureY = y - captureHeight / 2;
+              
+              const scaleX = canvas.width / rect.width;
+              const scaleY = canvas.height / rect.height;
+              
+              const sx = captureX * scaleX;
+              const sy = captureY * scaleY;
+              const sw = captureWidth * scaleX;
+              const sh = captureHeight * scaleY;
+              
+              magCtx.drawImage(canvas, sx, sy, sw, sh, 0, 0, magWidth, magHeight);
+            });
+          });
+        }
+
+      } catch (err) {
+        console.error('Error loading PDF:', err);
+      } finally {
+        if (loadingBar) loadingBar.style.width = '100%';
+        setTimeout(() => {
+          if (loadingOverlay) {
+            loadingOverlay.classList.add('loading-overlay--hidden');
+            setTimeout(() => { loadingOverlay.style.display = 'none'; }, 800);
+          }
+        }, 500);
+      }
+    });
+  </script>
+
+</body>
+</html>

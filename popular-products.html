@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Popular Products | Majestic Garage Doors</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <style>
+    .showroom {
+      padding: var(--space-2xl) clamp(1.5rem, 5vw, 6rem);
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 3rem;
+    }
+
+    .product-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s var(--ease-smooth), box-shadow 0.3s var(--ease-smooth);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .product-card__img-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 66%; /* 3:2 aspect ratio */
+      overflow: hidden;
+    }
+
+    .product-card__img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-card__content {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .product-card__title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+
+    .product-card__desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .product-card__specs {
+      list-style: none;
+      margin-bottom: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .product-card__specs li {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .product-card__specs li::before {
+      content: '•';
+      color: var(--gold);
+      margin-right: 8px;
+    }
+
+    .product-card__cta {
+      margin-top: auto;
+      text-align: center;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── Loading Overlay ──────────────────────────────── -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <img src="assets/logo.svg" alt="Majestic" class="loading-overlay__logo">
+    <div class="loading-overlay__bar-track">
+      <div class="loading-overlay__bar-fill" id="loadingBar"></div>
+    </div>
+  </div>
+
+  <!-- ── Navbar ───────────────────────────────────────── -->
+  <nav class="navbar navbar--visible" id="navbar">
+    <div class="navbar__brand">
+      <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:var(--space-md);">
+        <img src="assets/logo.svg" alt="Majestic Garage Doors" class="navbar__logo">
+        <span class="navbar__brand-text">Majestic</span>
+      </a>
+    </div>
+    <ul class="navbar__links">
+            <li><a href="services.html" class="navbar__link" id="nav-services">Services</a></li>
+      <li class="navbar__dropdown">
+        <a href="#" class="navbar__link">Products & Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style="margin-left:4px"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <ul class="navbar__dropdown-menu">
+          <li class="navbar__dropdown-item"><a href="popular-products.html" class="navbar__dropdown-link">Popular Products</a></li>
+          <li class="navbar__dropdown-item"><a href="catalogs.html" class="navbar__dropdown-link">Catalogs</a></li>
+          <li class="navbar__dropdown-item"><a href="configurator.html" class="navbar__dropdown-link">Build Your Custom Door</a></li>
+        </ul>
+      </li>
+      <li class="navbar__dropdown">
+        <a href="#" class="navbar__link">About <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style="margin-left:4px"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <ul class="navbar__dropdown-menu">
+          <li class="navbar__dropdown-item"><a href="index.html#about-us" class="navbar__dropdown-link">About Us</a></li>
+          <li class="navbar__dropdown-item"><a href="faq.html" class="navbar__dropdown-link">FAQ</a></li>
+        </ul>
+      </li>
+      <li><a href="gallery.html" class="navbar__link" id="nav-gallery">Gallery</a></li>
+    </ul>
+    <a href="contact.html" class="navbar__cta" id="nav-quote" style="text-decoration: none;">Get in Touch</a>
+    
+    <button class="navbar__hamburger" id="hamburger" aria-label="Toggle Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ── Mobile Menu Overlay ────────────────────────────────── -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-menu__links">
+            <li><a href="services.html" class="mobile-menu__link" onclick="toggleMenu()">Services</a></li>
+      <li class="mobile-menu__dropdown">
+        <span class="mobile-menu__link">Products & Tools</span>
+        <ul class="mobile-menu__sublinks">
+          <li><a href="popular-products.html" class="mobile-menu__sublink" onclick="toggleMenu()">Popular Products</a></li>
+          <li><a href="catalogs.html" class="mobile-menu__sublink" onclick="toggleMenu()">Catalogs</a></li>
+          <li><a href="configurator.html" class="mobile-menu__sublink" onclick="toggleMenu()">Build Your Custom Door</a></li>
+        </ul>
+      </li>
+      <li class="mobile-menu__dropdown">
+        <span class="mobile-menu__link">About</span>
+        <ul class="mobile-menu__sublinks">
+          <li><a href="index.html#about-us" class="mobile-menu__sublink" onclick="toggleMenu()">About Us</a></li>
+          <li><a href="faq.html" class="mobile-menu__sublink" onclick="toggleMenu()">FAQ</a></li>
+        </ul>
+      </li>
+      <li><a href="gallery.html" class="mobile-menu__link" onclick="toggleMenu()">Gallery</a></li>
+    </ul>
+    <a href="contact.html" class="navbar__cta mobile-menu__cta" onclick="toggleMenu()" style="text-decoration: none;">Get in Touch</a>
+  </div>
+
+  <main class="content">
+    <section class="gallery-hero" style="padding-top: 150px; text-align: center;">
+      <div class="gallery-hero__content" style="max-width: 800px; margin: 0 auto;">
+        <span class="gallery-hero__label">Showroom</span>
+        <h1 class="gallery-hero__heading">Popular<br><span class="gallery-hero__heading--gold">Products</span></h1>
+        <div class="gallery-hero__rule" style="margin: 1.5rem auto;"></div>
+        <p class="gallery-hero__text">Discover our most requested premium door styles, combining durability with striking aesthetics.</p>
+      </div>
+    </section>
+
+    <section class="showroom">
+      <div class="product-grid">
+        <!-- Product 1 -->
+        <div class="product-card">
+          <div class="product-card__img-wrapper" style="background-color: #fff; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+            <img src="assets/garage-door-spring.webp" alt="Premium Electro-Coated Torsion Springs" class="product-card__img" style="object-fit: contain; transform: scale(1.25);">
+          </div>
+          <div class="product-card__content">
+            <h3 class="product-card__title">Premium Torsion Springs</h3>
+            <p class="product-card__desc">
+              Durable, corrosion-resistant black electro-coated springs. Rated for <strong style="color: var(--gold);">20,000 cycles</strong>—providing double the lifespan of industry standard springs.
+            </p>
+            <ul class="product-card__specs">
+              <li>Wire Sizes: .207, .218, .225, .250 & more</li>
+              <li>Residential & Commercial Sizing</li>
+              <li>Professional Installation Available</li>
+            </ul>
+            <a href="contact.html?product=Premium Torsion Springs" class="navbar__cta product-card__cta" style="display:inline-block; text-decoration:none;">Get Pricing & Sizing</a>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+          <div class="product-card__img-wrapper">
+            <img src="assets/garageshots/997656d2_8c4e_4a99_94b1_36ef05742997_1_1x.webp" alt="Modern Aluminum & Glass" class="product-card__img">
+          </div>
+          <div class="product-card__content">
+            <h3 class="product-card__title">Modern Aluminum & Glass</h3>
+            <p class="product-card__desc">Sleek, transparent, and ultra-modern. Perfect for contemporary architecture.</p>
+            <ul class="product-card__specs">
+              <li>Material: Heavy-Duty Aluminum</li>
+              <li>Glass: Frosted or Clear Tempered</li>
+              <li>R-Value: 6.0 (Standard)</li>
+            </ul>
+            <a href="contact.html?product=Modern Aluminum Glass" class="navbar__cta product-card__cta" style="display:inline-block; text-decoration:none;">Inquire About This Model</a>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+          <div class="product-card__img-wrapper">
+            <img src="assets/garageshots/image_1_1x.webp" alt="Premium Insulated Steel" class="product-card__img">
+          </div>
+          <div class="product-card__content">
+            <h3 class="product-card__title">Premium Insulated Steel</h3>
+            <p class="product-card__desc">Maximum durability and energy efficiency for the harsh Ottawa winters.</p>
+            <ul class="product-card__specs">
+              <li>Material: Multi-layer Steel</li>
+              <li>R-Value: 18.0 (Maximum Insulation)</li>
+              <li>Multiple Color Options</li>
+            </ul>
+            <a href="contact.html?product=Premium Insulated Steel" class="navbar__cta product-card__cta" style="display:inline-block; text-decoration:none;">Inquire About This Model</a>
+          </div>
+        </div>
+      </div>
+    </section>
+      <!-- Global Footer Teaser (From Main Design System) -->
+    <section class="gallery-footer-cta">
+      <h2 class="gallery-hero__heading" style="font-size: clamp(2rem, 4vw, 3rem);">Ready to Upgrade?</h2>
+      <p class="gallery-hero__text">Let's build the perfect entrance for your home.</p>
+      <a href="contact.html" class="navbar__cta" style="margin-top: 2rem; display: inline-block;">Get In Touch</a>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ───────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="site-footer__container">
+      <div class="site-footer__brand">
+        <div class="site-footer__brand-header">
+          <img src="assets/logo.svg" alt="Majestic Garage Doors" class="site-footer__logo">
+          <span class="site-footer__title">Majestic</span>
+        </div>
+        <p class="site-footer__text">Ottawa's Premier Garage Door Experts. Craftsmanship, precision, and luxury.</p>
+        <div class="site-footer__socials">
+          <a href="https://www.facebook.com/people/Majestic-Garage-Doors/100079625388112/" target="_blank" rel="noopener noreferrer" class="site-footer__social-link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/majesticgaragedoor?igsh=MW40dHuzZXYxMTUyMA==" target="_blank" rel="noopener noreferrer" class="site-footer__social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="site-footer__contact">
+        <h4 class="site-footer__heading">Contact Information</h4>
+        <div class="site-footer__rule"></div>
+        <ul class="site-footer__list">
+          <li><span class="site-footer__label">Email:</span> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=syedahmed1674@gmail.com" target="_blank" rel="noopener noreferrer">syedahmed1674@gmail.com</a></li>
+          <li><span class="site-footer__label">Phone:</span> <a href="tel:6134623918">(613)-462-3918</a></li>
+          <li><span class="site-footer__label">Emergency:</span> <a href="tel:6136149709">(613)-614-9709</a></li>
+          <li><span class="site-footer__label">Hours:</span> 24/7 Service</li>
+        </ul>
+      </div>
+      
+      <div class="site-footer__links">
+        <h4 class="site-footer__heading">Quick Links</h4>
+        <div class="site-footer__rule"></div>
+        <ul class="site-footer__list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 2rem;">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="popular-products.html">Products</a></li>
+          <li><a href="catalogs.html">Catalogs</a></li>
+          <li><a href="configurator.html">Configurator</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="index.html#about-us">About Us</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Get in Touch</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <p>&copy; 2026 Majestic Garage Doors. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('load', () => {
+      const loadingOverlay = document.getElementById('loadingOverlay');
+      const loadingBar = document.getElementById('loadingBar');
+      if (loadingBar) {
+        loadingBar.style.transition = 'width 0.2s ease-out';
+        loadingBar.style.width = '100%';
+      }
+      setTimeout(() => {
+        if (loadingOverlay) {
+          loadingOverlay.classList.add('loading-overlay--hidden');
+          setTimeout(() => { loadingOverlay.style.display = 'none'; }, 800);
+        }
+      }, 200);
+    });
+  </script>
+
+</body>
+</html>

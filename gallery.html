@@ -27,16 +27,30 @@
 
   <!-- ── Navbar ───────────────────────────────────────── -->
   <nav class="navbar navbar--visible" id="navbar">
-    <a href="index.html" class="navbar__brand" style="text-decoration: none;">
-      <img src="assets/logo.svg" alt="Majestic Garage Doors" class="navbar__logo">
-      <span class="navbar__brand-text">Majestic</span>
-    </a>
+    <div class="navbar__brand">
+      <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:var(--space-md);">
+        <img src="assets/logo.svg" alt="Majestic Garage Doors" class="navbar__logo">
+        <span class="navbar__brand-text">Majestic</span>
+      </a>
+    </div>
     <ul class="navbar__links">
-      <li><a href="index.html" class="navbar__link" id="nav-home">Home</a></li>
-      <li><a href="index.html#services" class="navbar__link" id="nav-services">Services</a></li>
-      <li><a href="index.html#about-us" class="navbar__link" id="nav-about">About</a></li>
-      <li><a href="gallery.html" class="navbar__link" id="nav-gallery"
-          style="color: var(--gold); border-bottom: 1px solid var(--gold);">Gallery</a></li>
+            <li><a href="services.html" class="navbar__link" id="nav-services">Services</a></li>
+      <li class="navbar__dropdown">
+        <a href="#" class="navbar__link">Products & Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style="margin-left:4px"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <ul class="navbar__dropdown-menu">
+          <li class="navbar__dropdown-item"><a href="popular-products.html" class="navbar__dropdown-link">Popular Products</a></li>
+          <li class="navbar__dropdown-item"><a href="catalogs.html" class="navbar__dropdown-link">Catalogs</a></li>
+          <li class="navbar__dropdown-item"><a href="configurator.html" class="navbar__dropdown-link">Build Your Custom Door</a></li>
+        </ul>
+      </li>
+      <li class="navbar__dropdown">
+        <a href="#" class="navbar__link">About <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style="margin-left:4px"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <ul class="navbar__dropdown-menu">
+          <li class="navbar__dropdown-item"><a href="index.html#about-us" class="navbar__dropdown-link">About Us</a></li>
+          <li class="navbar__dropdown-item"><a href="faq.html" class="navbar__dropdown-link">FAQ</a></li>
+        </ul>
+      </li>
+      <li><a href="gallery.html" class="navbar__link" id="nav-gallery">Gallery</a></li>
     </ul>
     <a href="contact.html" class="navbar__cta" id="nav-quote" style="text-decoration: none;">Get in Touch</a>
     
@@ -50,10 +64,23 @@
   <!-- ── Mobile Menu Overlay ────────────────────────────────── -->
   <div class="mobile-menu" id="mobileMenu">
     <ul class="mobile-menu__links">
-      <li><a href="index.html" class="mobile-menu__link" onclick="toggleMenu()">Home</a></li>
-      <li><a href="index.html#services" class="mobile-menu__link" onclick="toggleMenu()">Services</a></li>
-      <li><a href="index.html#about-us" class="mobile-menu__link" onclick="toggleMenu()">About</a></li>
-      <li><a href="gallery.html" class="mobile-menu__link" onclick="toggleMenu()" style="color: var(--gold);">Gallery</a></li>
+            <li><a href="services.html" class="mobile-menu__link" onclick="toggleMenu()">Services</a></li>
+      <li class="mobile-menu__dropdown">
+        <span class="mobile-menu__link">Products & Tools</span>
+        <ul class="mobile-menu__sublinks">
+          <li><a href="popular-products.html" class="mobile-menu__sublink" onclick="toggleMenu()">Popular Products</a></li>
+          <li><a href="catalogs.html" class="mobile-menu__sublink" onclick="toggleMenu()">Catalogs</a></li>
+          <li><a href="configurator.html" class="mobile-menu__sublink" onclick="toggleMenu()">Build Your Custom Door</a></li>
+        </ul>
+      </li>
+      <li class="mobile-menu__dropdown">
+        <span class="mobile-menu__link">About</span>
+        <ul class="mobile-menu__sublinks">
+          <li><a href="index.html#about-us" class="mobile-menu__sublink" onclick="toggleMenu()">About Us</a></li>
+          <li><a href="faq.html" class="mobile-menu__sublink" onclick="toggleMenu()">FAQ</a></li>
+        </ul>
+      </li>
+      <li><a href="gallery.html" class="mobile-menu__link" onclick="toggleMenu()">Gallery</a></li>
     </ul>
     <a href="contact.html" class="navbar__cta mobile-menu__cta" onclick="toggleMenu()" style="text-decoration: none;">Get in Touch</a>
   </div>
@@ -147,29 +174,45 @@
           <span class="site-footer__title">Majestic</span>
         </div>
         <p class="site-footer__text">Ottawa's Premier Garage Door Experts. Craftsmanship, precision, and luxury.</p>
+        <div class="site-footer__socials">
+          <a href="https://www.facebook.com/people/Majestic-Garage-Doors/100079625388112/" target="_blank" rel="noopener noreferrer" class="site-footer__social-link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/majesticgaragedoor?igsh=MW40dHuzZXYxMTUyMA==" target="_blank" rel="noopener noreferrer" class="site-footer__social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+        </div>
       </div>
-
+      
       <div class="site-footer__contact">
         <h4 class="site-footer__heading">Contact Information</h4>
         <div class="site-footer__rule"></div>
         <ul class="site-footer__list">
-          <li><span class="site-footer__label">Email:</span> <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=syedahmed1674@gmail.com" target="_blank"
-              rel="noopener noreferrer">syedahmed1674@gmail.com</a></li>
+          <li><span class="site-footer__label">Email:</span> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=syedahmed1674@gmail.com" target="_blank" rel="noopener noreferrer">syedahmed1674@gmail.com</a></li>
           <li><span class="site-footer__label">Phone:</span> <a href="tel:6134623918">(613)-462-3918</a></li>
           <li><span class="site-footer__label">Emergency:</span> <a href="tel:6136149709">(613)-614-9709</a></li>
           <li><span class="site-footer__label">Hours:</span> 24/7 Service</li>
         </ul>
       </div>
-
+      
       <div class="site-footer__links">
         <h4 class="site-footer__heading">Quick Links</h4>
         <div class="site-footer__rule"></div>
-        <ul class="site-footer__list">
+        <ul class="site-footer__list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 2rem;">
           <li><a href="index.html">Home</a></li>
-          <li><a href="index.html#services">Services</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="popular-products.html">Products</a></li>
+          <li><a href="catalogs.html">Catalogs</a></li>
+          <li><a href="configurator.html">Configurator</a></li>
           <li><a href="gallery.html">Gallery</a></li>
           <li><a href="index.html#about-us">About Us</a></li>
+          <li><a href="faq.html">FAQ</a></li>
           <li><a href="contact.html">Get in Touch</a></li>
         </ul>
       </div>

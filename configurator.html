@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Door Configurator | Majestic Garage Doors</title>
+    <link href="static/css/main.9b44260a.css" rel="stylesheet">
+    <script defer="defer" src="static/js/main.fd56cd3b.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+    <style>
+        body {
+            overflow: hidden;
+            /* App-like feel */
+        }
+
+        .configurator-app {
+            display: flex;
+            height: 100vh;
+            padding-top: 80px;
+            /* Navbar space */
+        }
+
+        /* Left Side - Visualizer */
+        .configurator__visualizer {
+            flex: 1;
+            background: var(--bg-primary);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .visualizer-stage {
+            width: 100%;
+            max-width: 800px;
+            aspect-ratio: 16/9;
+            background: url('assets/garageshots/beautiful3.webp') center/cover no-repeat;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--glass-border);
+            position: relative;
+        }
+
+        .visualizer-overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .visualizer-overlay h3 {
+            color: var(--gold);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .visualizer-overlay p {
+            font-size: 0.8rem;
+            color: var(--text-primary);
+        }
+
+        /* Right Side - Steps */
+        .configurator__sidebar {
+            width: 450px;
+            background: var(--bg-elevated);
+            border-left: 1px solid var(--glass-border);
+            overflow-y: auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .config-step {
+            margin-bottom: 2rem;
+        }
+
+        .config-step__title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .config-step__title span {
+            background: var(--gold);
+            color: var(--bg-primary);
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .config-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .config-option {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .config-option:hover,
+        .config-option.active {
+            border-color: var(--gold);
+            background: rgba(201, 168, 76, 0.1);
+        }
+
+        .config-option img {
+            height: 60px;
+            object-fit: cover;
+            margin-bottom: 0.5rem;
+            border-radius: 4px;
+        }
+
+        .config-option span {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .config-option.active span {
+            color: var(--gold);
+        }
+
+        .config-footer {
+            margin-top: auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── Loading Overlay ──────────────────────────────── -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <img src="assets/logo.svg" alt="Majestic" class="loading-overlay__logo">
+        <div class="loading-overlay__bar-track">
+            <div class="loading-overlay__bar-fill" id="loadingBar"></div>
+        </div>
+    </div>
+
+    <!-- ── Navbar ───────────────────────────────────────── -->
+  <nav class="navbar navbar--visible" id="navbar">
+    <div class="navbar__brand">
+      <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:var(--space-md);">
+        <img src="assets/logo.svg" alt="Majestic Garage Doors" class="navbar__logo">
+        <span class="navbar__brand-text">Majestic</span>
+      </a>
+    </div>
+    <ul class="navbar__links">
+            <li><a href="services.html" class="navbar__link" id="nav-services">Services</a></li>
+      <li class="navbar__dropdown">
+        <a href="#" class="navbar__link">Products & Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style="margin-left:4px"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <ul class="navbar__dropdown-menu">
+          <li class="navbar__dropdown-item"><a href="popular-products.html" class="navbar__dropdown-link">Popular Products</a></li>
+          <li class="navbar__dropdown-item"><a href="catalogs.html" class="navbar__dropdown-link">Catalogs</a></li>
+          <li class="navbar__dropdown-item"><a href="configurator.html" class="navbar__dropdown-link">Build Your Custom Door</a></li>
+        </ul>
+      </li>
+      <li class="navbar__dropdown">
+        <a href="#" class="navbar__link">About <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style="margin-left:4px"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <ul class="navbar__dropdown-menu">
+          <li class="navbar__dropdown-item"><a href="index.html#about-us" class="navbar__dropdown-link">About Us</a></li>
+          <li class="navbar__dropdown-item"><a href="faq.html" class="navbar__dropdown-link">FAQ</a></li>
+        </ul>
+      </li>
+      <li><a href="gallery.html" class="navbar__link" id="nav-gallery">Gallery</a></li>
+    </ul>
+    <a href="contact.html" class="navbar__cta" id="nav-quote" style="text-decoration: none;">Get in Touch</a>
+    
+    <button class="navbar__hamburger" id="hamburger" aria-label="Toggle Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+    <!-- ── Mobile Menu Overlay ────────────────────────────────── -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-menu__links">
+            <li><a href="services.html" class="mobile-menu__link" onclick="toggleMenu()">Services</a></li>
+      <li class="mobile-menu__dropdown">
+        <span class="mobile-menu__link">Products & Tools</span>
+        <ul class="mobile-menu__sublinks">
+          <li><a href="popular-products.html" class="mobile-menu__sublink" onclick="toggleMenu()">Popular Products</a></li>
+          <li><a href="catalogs.html" class="mobile-menu__sublink" onclick="toggleMenu()">Catalogs</a></li>
+          <li><a href="configurator.html" class="mobile-menu__sublink" onclick="toggleMenu()">Build Your Custom Door</a></li>
+        </ul>
+      </li>
+      <li class="mobile-menu__dropdown">
+        <span class="mobile-menu__link">About</span>
+        <ul class="mobile-menu__sublinks">
+          <li><a href="index.html#about-us" class="mobile-menu__sublink" onclick="toggleMenu()">About Us</a></li>
+          <li><a href="faq.html" class="mobile-menu__sublink" onclick="toggleMenu()">FAQ</a></li>
+        </ul>
+      </li>
+      <li><a href="gallery.html" class="mobile-menu__link" onclick="toggleMenu()">Gallery</a></li>
+    </ul>
+    <a href="contact.html" class="navbar__cta mobile-menu__cta" onclick="toggleMenu()" style="text-decoration: none;">Get in Touch</a>
+  </div>
+
+    <div id="root" style="width: 100%; height: 100vh; position: relative; padding-top: 80px;"></div>
+
+    <script>
+        window.addEventListener('load', () => {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const loadingBar = document.getElementById('loadingBar');
+            if (loadingBar) {
+                loadingBar.style.transition = 'width 0.2s ease-out';
+                loadingBar.style.width = '100%';
+            }
+            setTimeout(() => {
+                if (loadingOverlay) {
+                    loadingOverlay.classList.add('loading-overlay--hidden');
+                    setTimeout(() => { loadingOverlay.style.display = 'none'; }, 800);
+                }
+            }, 200);
+        });
+    </script>
+
+</body>
+
+</html>

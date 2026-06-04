@@ -137,6 +137,14 @@ a {
   white-space: nowrap;
 }
 
+@media (max-width: 1920px) {
+  .navbar__brand-text {
+    position: static;
+    transform: none;
+    margin-left: 1.5rem;
+  }
+}
+
 .navbar__links {
   display: flex;
   align-items: center;

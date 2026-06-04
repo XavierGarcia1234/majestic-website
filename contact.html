@@ -46,6 +46,7 @@
         <ul class="navbar__dropdown-menu">
           <li class="navbar__dropdown-item"><a href="index.html#about-us" class="navbar__dropdown-link">About Us</a></li>
           <li class="navbar__dropdown-item"><a href="faq.html" class="navbar__dropdown-link">FAQ</a></li>
+          <li class="navbar__dropdown-item"><a href="wholesale-contact.html" class="navbar__dropdown-link">Wholesale Partners</a></li>
         </ul>
       </li>
       <li><a href="gallery.html" class="navbar__link" id="nav-gallery">Gallery</a></li>
@@ -76,6 +77,7 @@
         <ul class="mobile-menu__sublinks">
           <li><a href="index.html#about-us" class="mobile-menu__sublink" onclick="toggleMenu()">About Us</a></li>
           <li><a href="faq.html" class="mobile-menu__sublink" onclick="toggleMenu()">FAQ</a></li>
+          <li><a href="wholesale-contact.html" class="mobile-menu__sublink" onclick="toggleMenu()">Wholesale Partners</a></li>
         </ul>
       </li>
       <li><a href="gallery.html" class="mobile-menu__link" onclick="toggleMenu()">Gallery</a></li>
@@ -120,7 +122,9 @@
 
         <!-- Form side -->
         <div class="contact__form-wrapper">
-          <form class="contact-form" id="contactForm" action="https://formspree.io/f/xbdqbekj" method="POST">
+          <form class="contact-form" id="contactForm" action="https://formspree.io/f/meewqzqv" method="POST">
+            <input type="hidden" name="_subject" value="New General Contact Inquiry!">
+            <input type="hidden" name="Form_Source" value="General Contact Inquiry">
             <div class="contact-form__group">
               <label for="name" class="contact-form__label">Full Name</label>
               <input type="text" id="name" name="name" class="contact-form__input" required placeholder="John Doe" data-fs-field>
@@ -216,6 +220,7 @@
           <li><a href="gallery.html">Gallery</a></li>
           <li><a href="index.html#about-us">About Us</a></li>
           <li><a href="faq.html">FAQ</a></li>
+          <li><a href="wholesale-contact.html">Wholesale Partners</a></li>
           <li><a href="contact.html">Get in Touch</a></li>
         </ul>
       </div>
@@ -249,6 +254,24 @@
           messageBox.value = `Hi Majestic Garage Doors, I'm interested in getting more information about the ${product}. Can you provide pricing and sizing details?`;
         }
       }
+
+      const configured = urlParams.get('configured');
+      const configDataStr = urlParams.get('configData');
+      if (configured === 'true' && configDataStr) {
+        try {
+          const configData = JSON.parse(decodeURIComponent(configDataStr));
+          const select = document.getElementById('service');
+          if (select) {
+            select.value = 'Garage Door Installation';
+          }
+          const messageBox = document.getElementById('message');
+          if (messageBox) {
+            messageBox.value = `I'm interested in purchasing a custom garage door with the following selections:\n\nStyle: ${configData.style}\nColor: ${configData.color}\nWindows: ${configData.windows}\n\nPlease provide pricing and more information.`;
+          }
+        } catch (e) {
+          console.error('Error parsing configData', e);
+        }
+      }
       
       gsap.from('.contact__info > *', {
         y: 30,
@@ -277,7 +300,7 @@
     window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
     formspree('initForm', { 
       formElement: '#contactForm', 
-      formId: 'xbdqbekj',
+      formId: 'meewqzqv',
       onSuccess: function() {
         // Optional: extra logic after success
         console.log('Form submitted successfully');

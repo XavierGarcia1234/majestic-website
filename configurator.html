@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Door Configurator | Majestic Garage Doors</title>
-    <link href="static/css/main.9b44260a.css" rel="stylesheet">
-    <script defer="defer" src="static/js/main.fd56cd3b.js?v=8"></script>
+    <link href="static/css/main.70b64379.css" rel="stylesheet">
+    <script defer="defer" src="static/js/main.1ba433cd.js?v=8"></script>
     <link rel="stylesheet" href="styles.css?v=8">
     <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
     <style>
@@ -147,6 +147,13 @@
             padding-top: 2rem;
             border-top: 1px solid var(--glass-border);
         }
+
+        /* Hide the selection overlay on mobile to prevent overlapping */
+        @media (max-width: 768px) {
+            .Configurator-App .selection-overlay {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 
@@ -181,6 +188,7 @@
         <ul class="navbar__dropdown-menu">
           <li class="navbar__dropdown-item"><a href="index.html#about-us" class="navbar__dropdown-link">About Us</a></li>
           <li class="navbar__dropdown-item"><a href="faq.html" class="navbar__dropdown-link">FAQ</a></li>
+          <li class="navbar__dropdown-item"><a href="wholesale-contact.html" class="navbar__dropdown-link">Wholesale Partners</a></li>
         </ul>
       </li>
       <li><a href="gallery.html" class="navbar__link" id="nav-gallery">Gallery</a></li>
@@ -211,6 +219,7 @@
         <ul class="mobile-menu__sublinks">
           <li><a href="index.html#about-us" class="mobile-menu__sublink" onclick="toggleMenu()">About Us</a></li>
           <li><a href="faq.html" class="mobile-menu__sublink" onclick="toggleMenu()">FAQ</a></li>
+          <li><a href="wholesale-contact.html" class="mobile-menu__sublink" onclick="toggleMenu()">Wholesale Partners</a></li>
         </ul>
       </li>
       <li><a href="gallery.html" class="mobile-menu__link" onclick="toggleMenu()">Gallery</a></li>
@@ -220,7 +229,18 @@
 
     <div id="root" style="width: 100%; height: 100vh; position: relative; padding-top: 80px;"></div>
 
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js?v=8"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.from('#root', {
+                y: 30,
+                opacity: 0,
+                duration: 1,
+                ease: 'power3.out',
+                delay: 0.4
+            });
+        });
+
         window.addEventListener('load', () => {
             const loadingOverlay = document.getElementById('loadingOverlay');
             const loadingBar = document.getElementById('loadingBar');

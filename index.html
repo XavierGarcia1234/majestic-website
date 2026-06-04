@@ -77,6 +77,7 @@ Do not introduce new fonts or generic colors.
         <ul class="navbar__dropdown-menu">
           <li class="navbar__dropdown-item"><a href="index.html#about-us" class="navbar__dropdown-link">About Us</a></li>
           <li class="navbar__dropdown-item"><a href="faq.html" class="navbar__dropdown-link">FAQ</a></li>
+          <li class="navbar__dropdown-item"><a href="wholesale-contact.html" class="navbar__dropdown-link">Wholesale Partners</a></li>
         </ul>
       </li>
       <li><a href="gallery.html" class="navbar__link" id="nav-gallery">Gallery</a></li>
@@ -107,6 +108,7 @@ Do not introduce new fonts or generic colors.
         <ul class="mobile-menu__sublinks">
           <li><a href="index.html#about-us" class="mobile-menu__sublink" onclick="toggleMenu()">About Us</a></li>
           <li><a href="faq.html" class="mobile-menu__sublink" onclick="toggleMenu()">FAQ</a></li>
+          <li><a href="wholesale-contact.html" class="mobile-menu__sublink" onclick="toggleMenu()">Wholesale Partners</a></li>
         </ul>
       </li>
       <li><a href="gallery.html" class="mobile-menu__link" onclick="toggleMenu()">Gallery</a></li>
@@ -237,7 +239,7 @@ Do not introduce new fonts or generic colors.
         </a>
 
         <!-- Card 2 — Spring & Cable Replacement -->
-        <a href="contact.html?service=Spring & Cable Replacement" class="service-card" id="service-springs" style="text-decoration: none;">
+        <a href="contact.html?service=Spring%20%26%20Cable%20Replacement" class="service-card" id="service-springs" style="text-decoration: none;">
           <div class="service-card__glow"></div>
           <div class="service-card__icon">
             <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -289,7 +291,7 @@ Do not introduce new fonts or generic colors.
         </a>
 
         <!-- Card 4 — Opener Installation & Repair -->
-        <a href="contact.html?service=Opener Installation & Repair" class="service-card" id="service-opener" style="text-decoration: none;">
+        <a href="contact.html?service=Opener%20Installation%20%26%20Repair" class="service-card" id="service-opener" style="text-decoration: none;">
           <div class="service-card__glow"></div>
           <div class="service-card__icon">
             <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -490,7 +492,7 @@ Do not introduce new fonts or generic colors.
     </section>
 
     <!-- ── Google Reviews ─────────────────────────────────── -->
-    <section class="reviews" id="reviews">
+    <section class="reviews" id="reviews" style="padding-bottom: var(--space-lg);">
       <div class="reviews__header">
         <span class="reviews__label">Client Testimonials</span>
         <h2 class="reviews__heading">What Our Clients Say</h2>
@@ -851,6 +853,66 @@ Do not introduce new fonts or generic colors.
         </div>
       </div>
     </section>
+
+    <!-- ── Wholesale / Dealer Section ───────────────────── -->
+    <section class="about-us" id="wholesale" style="background: var(--bg-primary); padding-top: var(--space-lg);">
+      <div class="about-us__container">
+        
+        <!-- Visuals (Left) -->
+        <div class="about-us__visuals" style="order: -1; position: relative; display: flex; align-items: center; justify-content: center;">
+          <!-- Glowing background orb -->
+          <div style="position: absolute; width: 80%; height: 80%; background: radial-gradient(circle, rgba(201, 168, 76, 0.15) 0%, transparent 60%); top: 50%; left: 50%; transform: translate(-50%, -50%); filter: blur(30px); pointer-events: none; z-index: 0;"></div>
+          
+          <!-- Glassmorphism Container -->
+          <div style="position: relative; z-index: 1; width: 75%; aspect-ratio: 1/1; background: rgba(20, 20, 20, 0.4); border: 1px solid rgba(201, 168, 76, 0.15); border-radius: 24px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.02); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); display: flex; align-items: center; justify-content: center; transition: transform 0.5s var(--ease-smooth), box-shadow 0.5s var(--ease-smooth); cursor: pointer;" onmouseover="this.style.transform='scale(1.02) translateY(-5px)'; this.style.boxShadow='0 20px 50px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(201, 168, 76, 0.3), 0 0 40px rgba(201, 168, 76, 0.1)'" onmouseout="this.style.transform='scale(1) translateY(0)'; this.style.boxShadow='0 10px 40px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.02)'">
+            
+            <svg viewBox="0 0 64 64" fill="none" stroke="var(--gold)" stroke-linecap="round" stroke-linejoin="round" style="width: 55%; height: 55%; filter: drop-shadow(0 0 10px var(--gold-glow));">
+              <!-- Large Garage Door Backdrop -->
+              <g opacity="0.3" stroke-width="1.5">
+                <rect x="4" y="4" width="56" height="48" rx="2"/>
+                <line x1="4" y1="16" x2="60" y2="16"/>
+                <line x1="4" y1="28" x2="60" y2="28"/>
+                <line x1="4" y1="40" x2="60" y2="40"/>
+              </g>
+
+              <!-- Professional B2B Briefcase -->
+              <g stroke-width="1.5">
+                <!-- Briefcase Body (with background fill to hide lines behind it) -->
+                <rect x="14" y="32" width="36" height="24" rx="3" fill="#141414"/>
+                <!-- Handle -->
+                <path d="M26 32 V 24 C 26 21.5 28 20 32 20 C 36 20 38 21.5 38 24 V 32" />
+                <!-- Briefcase details -->
+                <line x1="14" y1="42" x2="50" y2="42" />
+                <!-- Locks / Latches -->
+                <rect x="28" y="40" width="8" height="4" rx="1" fill="#141414"/>
+                <circle cx="22" cy="42" r="1.5" fill="var(--gold)" />
+                <circle cx="42" cy="42" r="1.5" fill="var(--gold)" />
+              </g>
+            </svg>
+            
+          </div>
+          
+          <!-- B2B Floating Badge -->
+          <div style="position: absolute; bottom: 15%; right: 5%; background: var(--bg-secondary); border: 2px solid var(--gold); border-radius: 50%; width: 100px; height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 10px 30px var(--gold-glow); z-index: 2; pointer-events: none;">
+            <span style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--gold); line-height: 1;">B2B</span>
+            <span style="font-family: var(--font-body); font-size: 0.55rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-primary); text-align: center; margin-top: 4px;">Wholesale</span>
+          </div>
+        </div>
+
+        <!-- Copy / Text -->
+        <div class="about-us__copy">
+          <span class="about-us__label">Wholesale Partners</span>
+          <h2 class="about-us__heading">Are You a<br>Dealer?</h2>
+          <div class="about-us__rule"></div>
+          <p class="about-us__text">
+            Partner with Majestic Garage Doors to provide your clients with industry-leading quality and craftsmanship. Enjoy competitive wholesale pricing, dedicated support, and reliable inventory for your projects.
+          </p>
+          <a href="wholesale-contact.html" class="about__cta" style="margin-top: 1rem;">Partner With Us</a>
+        </div>
+
+      </div>
+    </section>
+
     <!-- Global Footer Teaser (From Main Design System) -->
     <section class="gallery-footer-cta">
       <h2 class="gallery-hero__heading" style="font-size: clamp(2rem, 4vw, 3rem);">Ready to Upgrade?</h2>
@@ -908,6 +970,7 @@ Do not introduce new fonts or generic colors.
           <li><a href="gallery.html">Gallery</a></li>
           <li><a href="index.html#about-us">About Us</a></li>
           <li><a href="faq.html">FAQ</a></li>
+          <li><a href="wholesale-contact.html">Wholesale Partners</a></li>
           <li><a href="contact.html">Get in Touch</a></li>
         </ul>
       </div>

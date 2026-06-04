@@ -111,6 +111,7 @@
         <ul class="navbar__dropdown-menu">
           <li class="navbar__dropdown-item"><a href="index.html#about-us" class="navbar__dropdown-link">About Us</a></li>
           <li class="navbar__dropdown-item"><a href="faq.html" class="navbar__dropdown-link">FAQ</a></li>
+          <li class="navbar__dropdown-item"><a href="wholesale-contact.html" class="navbar__dropdown-link">Wholesale Partners</a></li>
         </ul>
       </li>
       <li><a href="gallery.html" class="navbar__link" id="nav-gallery">Gallery</a></li>
@@ -141,6 +142,7 @@
         <ul class="mobile-menu__sublinks">
           <li><a href="index.html#about-us" class="mobile-menu__sublink" onclick="toggleMenu()">About Us</a></li>
           <li><a href="faq.html" class="mobile-menu__sublink" onclick="toggleMenu()">FAQ</a></li>
+          <li><a href="wholesale-contact.html" class="mobile-menu__sublink" onclick="toggleMenu()">Wholesale Partners</a></li>
         </ul>
       </li>
       <li><a href="gallery.html" class="mobile-menu__link" onclick="toggleMenu()">Gallery</a></li>
@@ -182,7 +184,7 @@
         <h2 class="service-block__title">Spring & Cable Replacement</h2>
         <div class="service-block__rule"></div>
         <p class="service-block__text">Broken torsion springs and frayed cables are major safety hazards. Our certified technicians handle high-tension replacements quickly and safely to restore your door's smooth operation.</p>
-        <a href="contact.html?service=Spring & Cable Replacement" class="navbar__cta" style="display:inline-block;">Inquire Now</a>
+        <a href="contact.html?service=Spring%20%26%20Cable%20Replacement" class="navbar__cta" style="display:inline-block;">Inquire Now</a>
       </div>
     </section>
 
@@ -209,7 +211,7 @@
         <h2 class="service-block__title">Opener Installation & Repair</h2>
         <div class="service-block__rule"></div>
         <p class="service-block__text">Smart opener upgrades with Wi-Fi, battery backup, and whisper-quiet belt-drive systems. We install, program, and repair all major opener brands.</p>
-        <a href="contact.html?service=Opener Installation & Repair" class="navbar__cta" style="display:inline-block;">Inquire Now</a>
+        <a href="contact.html?service=Opener%20Installation%20%26%20Repair" class="navbar__cta" style="display:inline-block;">Inquire Now</a>
       </div>
     </section>
 
@@ -297,6 +299,7 @@
           <li><a href="gallery.html">Gallery</a></li>
           <li><a href="index.html#about-us">About Us</a></li>
           <li><a href="faq.html">FAQ</a></li>
+          <li><a href="wholesale-contact.html">Wholesale Partners</a></li>
           <li><a href="contact.html">Get in Touch</a></li>
         </ul>
       </div>
@@ -306,7 +309,50 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js?v=8"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js?v=8"></script>
   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      gsap.registerPlugin(ScrollTrigger);
+      
+      // Animate hero
+      gsap.from('.gallery-hero__content > *', {
+        y: 30, opacity: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out', delay: 0.3
+      });
+      
+      // Animate service blocks
+      gsap.utils.toArray('.service-block').forEach((block) => {
+        const img = block.querySelector('.service-block__img-wrapper');
+        const copy = block.querySelector('.service-block__copy');
+        const isReverse = block.classList.contains('service-block--reverse');
+        
+        gsap.from(img, {
+          scrollTrigger: {
+            trigger: block,
+            start: 'top 85%',
+          },
+          x: isReverse ? 50 : -50,
+          opacity: 0,
+          duration: 0.8,
+          ease: 'power3.out'
+        });
+        
+        gsap.from(copy, {
+          scrollTrigger: {
+            trigger: block,
+            start: 'top 85%',
+          },
+          x: isReverse ? -50 : 50,
+          opacity: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          delay: 0.2
+        });
+      });
+
+      window.addEventListener('load', () => ScrollTrigger.refresh());
+    });
+
     window.addEventListener('load', () => {
       const loadingOverlay = document.getElementById('loadingOverlay');
       const loadingBar = document.getElementById('loadingBar');

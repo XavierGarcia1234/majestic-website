@@ -2488,11 +2488,11 @@ a {
 
 /* ── Contact Page ────────────────────────────────────────── */
 .contact-page {
-  padding-top: 100px; /* Space for navbar */
+  padding-top: 0; /* Handled by section padding */
 }
 
 .contact-section {
-  padding: var(--space-md) clamp(1.5rem, 5vw, 6rem) var(--space-2xl);
+  padding: 180px clamp(1.5rem, 5vw, 6rem) var(--space-2xl);
   position: relative;
   background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
 }

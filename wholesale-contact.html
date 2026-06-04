@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Wholesale Contact — Partner with Majestic Garage Doors for premium custom garage doors at wholesale pricing.">
+  <title>Wholesale Partners | Majestic Garage Doors</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css?v=8">
+
+  <!-- Favicon (SVG) -->
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+</head>
+
+<body>
+
+  <!-- ── Loading Overlay ──────────────────────────────── -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <img src="assets/logo.svg" alt="Majestic" class="loading-overlay__logo">
+    <div class="loading-overlay__bar-track">
+      <div class="loading-overlay__bar-fill" id="loadingBar"></div>
+    </div>
+  </div>
+
+  <!-- ── Navbar ───────────────────────────────────────── -->
+  <nav class="navbar navbar--visible" id="navbar">
+    <a href="index.html" class="navbar__logo-link">
+      <img src="assets/logo.svg" alt="Majestic Garage Doors" class="navbar__logo">
+    </a>
+    <a href="index.html" class="navbar__brand-text" style="text-decoration:none;">MAJESTIC GARAGE DOORS</a>
+    <ul class="navbar__links">
+            <li><a href="services.html" class="navbar__link" id="nav-services">Services</a></li>
+      <li class="navbar__dropdown">
+        <a href="#" class="navbar__link">Products & Tools <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style="margin-left:4px"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <ul class="navbar__dropdown-menu">
+          <li class="navbar__dropdown-item"><a href="popular-products.html" class="navbar__dropdown-link">Popular Products</a></li>
+          <li class="navbar__dropdown-item"><a href="catalogs.html" class="navbar__dropdown-link">Catalogs</a></li>
+          <li class="navbar__dropdown-item"><a href="configurator.html" class="navbar__dropdown-link">Build Your Custom Door</a></li>
+        </ul>
+      </li>
+      <li class="navbar__dropdown">
+        <a href="#" class="navbar__link">About <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style="margin-left:4px"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <ul class="navbar__dropdown-menu">
+          <li class="navbar__dropdown-item"><a href="index.html#about-us" class="navbar__dropdown-link">About Us</a></li>
+          <li class="navbar__dropdown-item"><a href="faq.html" class="navbar__dropdown-link">FAQ</a></li>
+          <li class="navbar__dropdown-item"><a href="wholesale-contact.html" class="navbar__dropdown-link">Wholesale Partners</a></li>
+        </ul>
+      </li>
+      <li><a href="gallery.html" class="navbar__link" id="nav-gallery">Gallery</a></li>
+    </ul>
+    <a href="contact.html" class="navbar__cta" id="nav-quote" style="text-decoration: none;">Get in Touch</a>
+    
+    <button class="navbar__hamburger" id="hamburger" aria-label="Toggle Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ── Mobile Menu Overlay ────────────────────────────────── -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-menu__links">
+            <li><a href="services.html" class="mobile-menu__link" onclick="toggleMenu()">Services</a></li>
+      <li class="mobile-menu__dropdown">
+        <span class="mobile-menu__link">Products & Tools</span>
+        <ul class="mobile-menu__sublinks">
+          <li><a href="popular-products.html" class="mobile-menu__sublink" onclick="toggleMenu()">Popular Products</a></li>
+          <li><a href="catalogs.html" class="mobile-menu__sublink" onclick="toggleMenu()">Catalogs</a></li>
+          <li><a href="configurator.html" class="mobile-menu__sublink" onclick="toggleMenu()">Build Your Custom Door</a></li>
+        </ul>
+      </li>
+      <li class="mobile-menu__dropdown">
+        <span class="mobile-menu__link">About</span>
+        <ul class="mobile-menu__sublinks">
+          <li><a href="index.html#about-us" class="mobile-menu__sublink" onclick="toggleMenu()">About Us</a></li>
+          <li><a href="faq.html" class="mobile-menu__sublink" onclick="toggleMenu()">FAQ</a></li>
+          <li><a href="wholesale-contact.html" class="mobile-menu__sublink" onclick="toggleMenu()">Wholesale Partners</a></li>
+        </ul>
+      </li>
+      <li><a href="gallery.html" class="mobile-menu__link" onclick="toggleMenu()">Gallery</a></li>
+    </ul>
+    <a href="contact.html" class="navbar__cta mobile-menu__cta" onclick="toggleMenu()" style="text-decoration: none;">Get in Touch</a>
+  </div>
+
+  <!-- ── Contact Content ──────────────────────────────── -->
+  <main class="content contact-page" id="mainContent">
+
+    <!-- Contact Header / Form Section -->
+    <section class="contact-section">
+      <div class="contact-section__container" style="display: flex; flex-direction: column; align-items: center; max-width: 900px; margin: 0 auto; gap: 3rem;">
+        <!-- Text/Info side -->
+        <div class="contact__info" style="text-align: center; width: 100%; max-width: 700px;">
+          <span class="contact__label" style="justify-content: center; display: flex;">Wholesale Partners</span>
+          <h1 class="contact__heading" style="text-align: center;">Partner With <span class="contact__heading--gold">Majestic</span></h1>
+          <div class="contact__rule" style="margin: 1.5rem auto;"></div>
+          <p class="contact__text" style="text-align: center;">
+            Join our exclusive network of dealers and contractors to access premium garage doors at competitive wholesale pricing. We provide dedicated support to help your business thrive.
+          </p>
+        </div>
+
+        <!-- Form side -->
+        <div class="contact__form-wrapper" style="width: 100%;">
+          <form class="contact-form" id="wholesaleForm" action="https://formspree.io/f/meewqzqv" method="POST">
+            <input type="hidden" name="_subject" value="New Wholesale Dealer Application!">
+            <input type="hidden" name="Form_Source" value="Wholesale Application">
+            
+            <!-- Section 1: Contact Info -->
+            <h3 style="grid-column: 1 / -1; color: var(--gold); margin-top: 1rem; margin-bottom: 0.5rem; font-family: var(--font-display); font-size: 1.5rem;">Contact Information</h3>
+
+            <div class="contact-form__group">
+              <label for="company" class="contact-form__label">Company Name *</label>
+              <input type="text" id="company" name="company" class="contact-form__input" required placeholder="Doe Construction" data-fs-field>
+            </div>
+            <div class="contact-form__group">
+              <label for="name" class="contact-form__label">Primary Contact Name *</label>
+              <input type="text" id="name" name="name" class="contact-form__input" required placeholder="John Doe" data-fs-field>
+            </div>
+            <div class="contact-form__group">
+              <label for="position" class="contact-form__label">Job Position *</label>
+              <input type="text" id="position" name="position" class="contact-form__input" required placeholder="Manager" data-fs-field>
+            </div>
+            <div class="contact-form__group">
+              <label for="email" class="contact-form__label">Email *</label>
+              <input type="email" id="email" name="email" class="contact-form__input" required placeholder="john@company.com" data-fs-field>
+            </div>
+            <div class="contact-form__group">
+              <label for="phone" class="contact-form__label">Phone *</label>
+              <input type="tel" id="phone" name="phone" class="contact-form__input" required placeholder="(613) 555-0123" data-fs-field>
+            </div>
+            <div class="contact-form__group">
+              <label for="website" class="contact-form__label">Website *</label>
+              <input type="text" id="website" name="website" class="contact-form__input" required placeholder="https://www.example.com" data-fs-field>
+            </div>
+
+            <!-- Section 2: Address Info -->
+            <h3 style="grid-column: 1 / -1; color: var(--gold); margin-top: 1.5rem; margin-bottom: 0.5rem; font-family: var(--font-display); font-size: 1.5rem;">Address Information</h3>
+
+            <div class="contact-form__group">
+              <label for="city" class="contact-form__label">City *</label>
+              <input type="text" id="city" name="city" class="contact-form__input" required data-fs-field>
+            </div>
+            <div class="contact-form__group">
+              <label for="state" class="contact-form__label">State / Province *</label>
+              <input type="text" id="state" name="state" class="contact-form__input" required data-fs-field>
+            </div>
+
+
+            <!-- Section 3: Business Details -->
+            <h3 style="grid-column: 1 / -1; color: var(--gold); margin-top: 1.5rem; margin-bottom: 0.5rem; font-family: var(--font-display); font-size: 1.5rem;">Business Details</h3>
+
+            <div class="contact-form__group">
+              <label for="long" class="contact-form__label">How long have you been in business? *</label>
+              <input type="text" id="long" name="long" class="contact-form__input" required data-fs-field>
+            </div>
+
+
+            <div class="contact-form__group">
+              <label for="employees" class="contact-form__label">How many employees?</label>
+              <input type="number" id="employees" name="employees" class="contact-form__input" data-fs-field>
+            </div>
+            <div class="contact-form__group">
+              <label for="business_structure" class="contact-form__label">Business Structure *</label>
+              <select id="business_structure" name="business_structure" class="contact-form__select" required data-fs-field>
+                <option value="" disabled selected>Select an option</option>
+                <option value="Individual / Sole Proprietor">Individual / Sole Proprietor</option>
+                <option value="LLC">LLC</option>
+                <option value="Corporation">Corporation</option>
+                <option value="S-Corporation">S-Corporation</option>
+                <option value="Partnership">Partnership</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="contact-form__group">
+              <label for="store_front" class="contact-form__label">Do you have a store front? *</label>
+              <select id="store_front" name="store_front" class="contact-form__select" required data-fs-field>
+                <option value="" disabled selected>Select an option</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+
+
+            <!-- Section 4: Purchasing Details -->
+            <h3 style="grid-column: 1 / -1; color: var(--gold); margin-top: 1.5rem; margin-bottom: 0.5rem; font-family: var(--font-display); font-size: 1.5rem;">Purchasing Details</h3>
+
+            <div class="contact-form__group">
+              <label for="estimate" class="contact-form__label">Annual estimated purchasing volume of garage doors?</label>
+              <input type="text" id="estimate" name="estimate" class="contact-form__input" data-fs-field>
+            </div>
+            <div class="contact-form__group">
+              <label for="current_supplier" class="contact-form__label">Who is your current supplier?</label>
+              <input type="text" id="current_supplier" name="current_supplier" class="contact-form__input" data-fs-field>
+            </div>
+
+            <div class="contact-form__group contact-form__group--full">
+              <label class="contact-form__label">Mainly sell to</label>
+              <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.5rem;">
+                <label style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-primary); cursor: pointer;"><input type="checkbox" name="mainly_sell[]" value="Residential" style="accent-color: var(--gold);" data-fs-field> Residential</label>
+                <label style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-primary); cursor: pointer;"><input type="checkbox" name="mainly_sell[]" value="Commercial" style="accent-color: var(--gold);" data-fs-field> Commercial</label>
+                <label style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-primary); cursor: pointer;"><input type="checkbox" name="mainly_sell[]" value="Industrial" style="accent-color: var(--gold);" data-fs-field> Industrial</label>
+              </div>
+            </div>
+
+            <div class="contact-form__group">
+              <label for="happy" class="contact-form__label">Are you happy with them?</label>
+              <select id="happy" name="happy" class="contact-form__select" data-fs-field>
+                <option value="" disabled selected>Select an option</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+            
+            <div class="contact-form__group contact-form__group--full">
+              <label for="challenge" class="contact-form__label">If no, describe the challenge you’re facing</label>
+              <textarea id="challenge" name="challenge" class="contact-form__textarea" rows="3" data-fs-field></textarea>
+            </div>
+
+            <!-- Section 5: Additional Info -->
+            <h3 style="grid-column: 1 / -1; color: var(--gold); margin-top: 1.5rem; margin-bottom: 0.5rem; font-family: var(--font-display); font-size: 1.5rem;">Additional Information</h3>
+
+            <div class="contact-form__group contact-form__group--full">
+              <label class="contact-form__label">How did you hear about us?</label>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 0.5rem;">
+                <label style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-primary); cursor: pointer;"><input type="checkbox" name="hear_about[]" value="Google" style="accent-color: var(--gold);" data-fs-field> Google</label>
+                <label style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-primary); cursor: pointer;"><input type="checkbox" name="hear_about[]" value="Social Media" style="accent-color: var(--gold);" data-fs-field> Social Media</label>
+
+                <label style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-primary); cursor: pointer;"><input type="checkbox" name="hear_about[]" value="Referral" style="accent-color: var(--gold);" data-fs-field> Referral</label>
+
+                <label style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-primary); cursor: pointer;"><input type="checkbox" name="hear_about[]" value="Other" style="accent-color: var(--gold);" data-fs-field> Other</label>
+              </div>
+            </div>
+
+
+
+            <div class="contact-form__group contact-form__group--full">
+              <label for="description" class="contact-form__label">PLEASE DESCRIBE YOUR COMPANY *</label>
+              <textarea id="description" name="description" class="contact-form__textarea" rows="5" required data-fs-field></textarea>
+            </div>
+
+            <!-- Consent -->
+            <div class="contact-form__group contact-form__group--full" style="display: flex; align-items: flex-start; gap: 0.75rem; margin-top: 1.5rem;">
+              <input type="checkbox" id="consent" name="consent" required style="margin-top: 0.3rem; width: 1.2rem; height: 1.2rem; accent-color: var(--gold); cursor: pointer;" data-fs-field>
+              <label for="consent" class="contact-form__label" style="text-transform: none; font-size: 0.85rem; line-height: 1.4; color: var(--text-secondary); margin-bottom: 0; cursor: pointer;">
+                By checking this box, I give my consent to Majestic Garage Doors to manage the information on the form for the purpose of becoming a distributor. *
+              </label>
+            </div>
+
+            <button type="submit" class="contact-form__submit" style="grid-column: 1 / -1; margin-top: 2rem;" data-fs-submit-btn>Submit Inquiry</button>
+            
+            <!-- Formspree Status Messages -->
+            <div data-fs-success class="contact-form__status contact-form__status--success" style="grid-column: 1 / -1;">
+              Thank you! Your partnership inquiry has been received. We'll be in touch shortly.
+            </div>
+            <div data-fs-error class="contact-form__status contact-form__status--error" style="grid-column: 1 / -1;"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ───────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="site-footer__container">
+      <div class="site-footer__brand">
+        <div class="site-footer__brand-header">
+          <img src="assets/logo.svg" alt="Majestic Garage Doors" class="site-footer__logo">
+          <span class="site-footer__title">Majestic</span>
+        </div>
+        <p class="site-footer__text">Ottawa's Premier Garage Door Experts. Craftsmanship, precision, and luxury.</p>
+        <div class="site-footer__socials">
+          <a href="https://www.facebook.com/people/Majestic-Garage-Doors/100079625388112/" target="_blank" rel="noopener noreferrer" class="site-footer__social-link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/majesticgaragedoor?igsh=MW40dHuzZXYxMTUyMA==" target="_blank" rel="noopener noreferrer" class="site-footer__social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="site-footer__contact">
+        <h4 class="site-footer__heading">Contact Information</h4>
+        <div class="site-footer__rule"></div>
+        <ul class="site-footer__list">
+          <li><span class="site-footer__label">Email:</span> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=syedahmed1674@gmail.com" target="_blank" rel="noopener noreferrer">syedahmed1674@gmail.com</a></li>
+          <li><span class="site-footer__label">Phone:</span> <a href="tel:6134623918">(613)-462-3918</a></li>
+          <li><span class="site-footer__label">Emergency:</span> <a href="tel:6136149709">(613)-614-9709</a></li>
+          <li><span class="site-footer__label">Hours:</span> 24/7 Service</li>
+        </ul>
+      </div>
+      
+      <div class="site-footer__links">
+        <h4 class="site-footer__heading">Quick Links</h4>
+        <div class="site-footer__rule"></div>
+        <ul class="site-footer__list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 2rem;">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="popular-products.html">Products</a></li>
+          <li><a href="catalogs.html">Catalogs</a></li>
+          <li><a href="configurator.html">Configurator</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="index.html#about-us">About Us</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="wholesale-contact.html">Wholesale Partners</a></li>
+          <li><a href="contact.html">Get in Touch</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <p>&copy; 2026 Majestic Garage Doors. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ── Scripts ──────────────────────────────────────── -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js?v=8"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js?v=8"></script>
+  <script>
+    // simple load script so the page reveals smoothly
+    window.addEventListener('load', () => {
+      document.getElementById('loadingOverlay').classList.add('loading-overlay--hidden');
+      
+      gsap.from('.contact__info > *', {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: 'power3.out',
+        delay: 0.5
+      });
+      
+      gsap.from('.contact__form-wrapper', {
+        x: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        delay: 0.8
+      });
+    });
+  </script>
+
+  <!-- ── Formspree Integration ──────────────────────────── -->
+  <script>
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { 
+      formElement: '#wholesaleForm', 
+      formId: 'meewqzqv',
+      onSuccess: function() {
+        console.log('Form submitted successfully');
+      }
+    });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+  <script src="menu.js?v=8"></script>
+</body>
+
+</html>
